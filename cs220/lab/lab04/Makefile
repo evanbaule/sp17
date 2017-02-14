@@ -1,18 +1,19 @@
 SOURCE = pointers.c
 ITEM = lab04
+ME = ebaule1
 
 test : pointers
 	./pointers
-	
+
 pointers : pointers.c
 	gcc -g -Wall -o pointers pointers.c
-	
+
 clean :
-	-rm pointers $(ITEM)_$(USER).tar.gz
-	
+	-rm pointers $(ITEM)_$(ME).tar.gz
+
 submit: $(SOURCE)
-	mkdir $(ITEM)_$(USER)
-	cp -p $(SOURCE) $(ITEM)_$(USER)
-	tar -cvzf $(ITEM)_$(USER).tar.gz $(ITEM)_$(USER)
-	rm -r $(ITEM)_$(USER)
-	echo Turn in $(ITEM)_$(USER).tar.gz on myCourses	
+	mkdir $(ITEM)_$(ME)
+	cp -p $(SOURCE) $(ITEM)_$(ME)
+	tar -cvzf $(ITEM)_$(ME).tar.gz $(ITEM)_$(ME)
+	rm -r $(ITEM)_$(ME)
+	echo Turn in $(ITEM)_$(ME).tar.gz on myCourses
