@@ -51,12 +51,12 @@ void swap_notemp(int *a, int *b){
  	int i;
 	for(i = 0; i < 32; i++){
 		if(getBit(a, i) == 1){
-			int b = getBit(b, i);
-			setBit(a, i, b);
+			int c = getBit(b, i);
+			setBit(a, i, c);
 			setBit(b, i, 1);
 		} else {
-			int b = getBit(b, i);
-			setBit(a, i, b);
+			int c = getBit(b, i);
+			setBit(a, i, c);
 			setBit(b, i, 0);
 		}
 	}
