@@ -49,13 +49,15 @@ void swap_temp(int *a, int *b){
 }
 void swap_notemp(int *a, int *b){
  	int i;
-	for(i = 0; i < 31; i++){
+	for(i = 0; i < 32; i++){
 		if(getBit(a, i) == 1){
-			*a = *b;
-			setBit(&b, i, 1);
+			int b = getBit(b, i);
+			setBit(a, i, b);
+			setBit(b, i, 1);
 		} else {
-			*a = *b;
-			setBit(&b, i, 0);
+			int b = getBit(b, i);
+			setBit(a, i, b);
+			setBit(b, i, 0);
 		}
 	}
 }
