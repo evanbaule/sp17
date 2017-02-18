@@ -16,82 +16,38 @@ main() Process
 */
 int main(int argc, char ** argv) {
 
-	/*
-	The following loop initializes all values of freq[] to 0
-	*/
+	/*Initialize table to all zero*/
 	int ze;
 	for(ze = 0; ze < ARRLEN; ze++){
 		frequency[ze] = 0;
 	}
 
 	int bin;
-	int lowest;
 	int idx = 0;
 	initSlots();
 	while(1==scanf("%d",&bin)) {
 		frequency[bin]++;
 		if (-1==findSlot(bin)) {
-			getBin(bin, idx);
-			if(idx < (NUMSLOTS - 1)){idx++;}
+			if(idx < 3){idx++; getBin(bin, idx);}
 			else{
-				int bindex;
-				int lowestBin = 0;
+				/*
+				Finds the lowest bin on the table, 
+				which is the one that will be removed.
+				*/
+				int bindex; //Iterator
+				int lowestBin = 0; //Index of the bin we will remove, if we dont change this we will remove the first bin.
 				for(bindex = 0; bindex < 4; bindex++){
 					if(frequency[bindex] < frequency[lowestBin]){
 						lowestBin = bindex;
 					}
 				}
-				getBin(bin, lowestBin);
+				getBin(bin, lowestBin); //Replaces the lowest freq bin with the one we need.
 			}
 		}
 		getWidget(bin);
 	}
 	printEarnings();
 	return 0;
-
-	/*
-	while(1==scanf("%d",&bin)) {
-		frequency[bin]++;
-		if (findSlot(bin) == (-1)) {
-			getBin(bin,idx);
-			if(idx < (NUMSLOTS-1)){
-				idx++;
-			} else{
-				lowest = lowestFreq();
-				int j;
-				for(j = 0; j < NUMSLOTS; j++){
-					if(findSlot(lowest) != -1){
-						getBin(bin, j);
-					}
-					else{
-						lowest = lowest-1;
-						lowestFreq(lowest);
-					}
-				}
-			}
-		}
-		frequency[bin]++;
-		if(findSlot(bin)== -1){
-			if(idx < (NUMSLOTS-1)){getBin(bin, idx); idx++;} 
-			else{
-				lowest = lowestFreq();
-				int j;
-				for(j = 0; j < NUMSLOTS; j++){
-					if(findSlot(lowest) != -1){
-						getBin(bin, lowest);
-					}
-					else{
-						lowest = lowest-1;
-					}
-				}
-			}
-		}
-		getWidget(bin);
-	}
-	printEarnings();
-	printf("%d", lowestFreq());
-	return 0;
-	*/
 
 }
 
@@ -107,4 +63,3 @@ int lowestFreq(){
 	}
 	return ret;
 }
-
