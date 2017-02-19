@@ -85,7 +85,7 @@ int main(){
     	out += 4;
     }
 
-
+    printf("Total letters: %d", out);
 
 	return 0;
 }
