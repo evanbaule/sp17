@@ -1,12 +1,11 @@
 #include <stdio.h>
 
 //The following variables were used for testing
-#define ii = 1234; //31: "onethousandtwohundredthirtyfour" 
-#define iic = 1212; //17 "onethousandtwelve"
-#define ib = 1000000000; //10 "onebillion"
+// define i = 342; //19: "threehundredfortytwo" 
+
 
 int onesPlace[10] = {
-	4, //zero mainly for ph to get same index as number
+	0, //zero mainly for ph to get same index as number
 	3, //one
 	3, //two
 	5, //three
@@ -16,26 +15,31 @@ int onesPlace[10] = {
 	5, //seven
 	5, //eight
 	4, //nine
-}
+};
 
-int places[5] = {
+int places[6] = {
+	0, //ph
 	4, //teen
 	7, //hundred
 	8, //thousand
 	7, //million
 	7, //billion
-}
+};
 
-int corner[4] = {
+int corner[5] = {
 	3, //ten
 	5, //eleven
 	6, //twelve
 	8, //thirteen
-}
+	7, //fifteen
 
-int calculate(int inp);
+};
+
+int calculate(int val, int place);
 
 int main(){
+
+	int tempIn = 115;
 	/*
 	Operational Flow:
 		1. Reads in an integer value from the std in stream, bound to inputInt
@@ -45,15 +49,15 @@ int main(){
 		5. Prints the total value to the screen.
 	*/
 	printf("Welcome to the number converter!\n");
-	printf("Please enter a number to be converted: \n")
-	printf("Because this software is in testing, the default value is %d", ii);
+	printf("Please enter a number to be converted: \n");
+	printf("Because this software is in testing, the default value is %d\n", tempIn);
  
  	//Variables to use
  	int out = 0;
- 	int inputInt = ii;
+ 	int inputInt = tempIn;
  	int digits = 0;
  	int tcv = inputInt; //Temp Counter Variable
- 	int tcv2 = intputInt; //Temp Counter Variable
+ 	int tcv2 = inputInt; //Temp Counter Variable
 
  	//Determine how long the digit array needs to be
  	while(tcv != 0)
@@ -74,6 +78,13 @@ int main(){
     		i++;
     	}
 
+    	//TEST LOOP
+    	int x;
+    	printf("digits: %d\n", digits);
+    	for(x = 0; x < digits; x++){
+    		printf("TESTING ARRAY VAL @ %d: %d\n", x, integerArray[x]);
+    	}
+
     	//Works the array backwards to get the total
     	//Decided to loop this backwards instead of the other loop to save with inverting indexes
     	int j; 
@@ -85,7 +96,7 @@ int main(){
     	out += 4;
     }
 
-    printf("Total letters: %d", out);
+    printf("Total letters: %d\n", out);
 
 	return 0;
 }
@@ -96,5 +107,7 @@ Parameters (val, place)
 */
 int calculate(int val, int place){
 	int retVal = 0;
+	retVal += onesPlace[val];
+	retVal += places[place];
 	return retVal;
 }

@@ -1,5 +1,3 @@
-ME = ebaule1
-
 test : numLetters
 	./numLetters 342
 	./numLetters 115
@@ -8,11 +6,11 @@ numLetters : numLetters.c
 	gcc -Wall -g -o numLetters numLetters.c
 	
 clean : 
-	-rm numLetters hw04_$(ME).tar.gz
+	-rm numLetters hw04_ebaule1.tar.gz
 	
 submit: numLetters.c
-	mkdir hw04_$(ME)
-	cp numLetters.c hw04_$(ME)
-	tar -cvzf hw04_$(ME).tar.gz hw04_$(ME)
-	rm -r hw04_$(ME)
-	echo Turn in hw04_$(ME).tar.gz on myCourses under content, Homework Submissions		
+	mkdir hw04_ebaule1
+	cp numLetters.c hw04_ebaule1
+	tar -cvzf hw04_ebaule1.tar.gz hw04_ebaule1
+	rm -r hw04_ebaule1
+	echo Turn in hw04_ebaule1.tar.gz on myCourses under content, Homework Submissions		
