@@ -37,7 +37,7 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	
 
 	/* Variables to use in construction of returnFloatx */
-	int retSign,
+	floatx retSign,
 		retExp,
 		retFrac;
 
