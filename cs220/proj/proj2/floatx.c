@@ -14,7 +14,7 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	int doubleLength, //Length of standard double
 		dExp, // # of expbits in standard double
 		dFrac, // # of fracbits in standard double
-		fTot, //total # of bits from definition
+		fLen, //total # of bits from definition
 		fExp, //number of fraction bits to be used in return floatx, taken from function call
 		fFrac, //number of exponent bits in return floatx
 		maxFloatx; //maximum value of a floatx;
@@ -23,9 +23,9 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	dExp = 11; // # of expbits in a standard double
 	dFrac = 52; // # of fracbits in a standard double
 
-	fTot = def->totBits; //Pulling values out of the definition
+	fLen = def->totBits; //Pulling values out of the definition
 	fExp = def->expBits;
-	fFrac = fTot - fExp - 1;
+	fFrac = fLen - fExp - 1;
 
 	maxFloatx = pow(2, fExp) -1;
 
@@ -37,9 +37,9 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	
 
 	/* Variables to use in construction of returnFloatx */
-	floatx retSign,
-		retExp,
-		retFrac;
+	floatx 	retSign, //sign bit
+			retExp, //exponent bits
+			retFrac; //fraction bits
 
 	floatx makeup = *(floatx*) &value; //Gives us the bit makeup of @value as a floatx
 	floatx temp1 = makeup;
@@ -51,16 +51,13 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	//exp
 	temp1 <<= 1; //chop off sign bit
 	retExp = temp1 >> (dFrac + 1);
-	retExp -= dBias; //biases the exponent by the double bias value
+	retExp -= dBias; //biases the exponent by the double bias value 1023
 
 	//frac
-	temp2 <<= 1; //PEACE sign bit
-	temp2 <<= dExp; //leaves us with just exponent bits
+	temp2 <<= (dExp+1);  //leaves us with just exponent bits
 	retFrac = temp2 >> (doubleLength - fFrac - 1);
 
-	/* REWRITE THIS */
-	int rounding = retFrac % 2;
-	if(rounding == 1){
+	if((retFrac%2) == 1){
 		retFrac >>= 1;
 		retFrac += 0x1;
 	} else {
@@ -68,12 +65,11 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	}
 
 	//case: infinity
-
 	if(retExp >= dBias || retExp >= fxBias){
 		retExp = maxFloatx;
 		retFrac = 0;
 	} else {
-		retExp = fxBias;
+		retExp += fxBias;
 	}
 
 	//case: denormal
@@ -82,9 +78,9 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 
 
 	//build
-	returnFloatx += retSign << (fTot-1);
+	returnFloatx += retSign << (fLen-1);
 	returnFloatx += retExp << fFrac;
-	returnFloatx = retFrac;
+	returnFloatx += retFrac;
 	return returnFloatx;
 }
 
@@ -92,8 +88,65 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
  *  (as defined by *def).
  */
 double floatxToDouble(const floatxDef *def, floatx fx) {
+	//wayyyyy less comments down here because a lot of the stuff is the same, especially vars
+	/* Union used to copy over retvals */
+	union{
+		floatx f;
+		double d;
+	}u;
 
-	/* Put your code here */
-	return NAN;
+	floatx returnFloatx = 0; //use this and then copy over the 
+
+	/* size trackers */
+	int dLen,
+		dExp,
+		dFrac,
+
+		fLen,
+		fExp,
+		fFrac;
+
+	/* double specs */
+	//double d = 0; //just to grab size
+	dLen = 64; 
+	dExp = 11; 
+	dFrac = 52; 
+
+	/* floatx specs */
+	fLen = def->totBits; 
+	fExp = def->expBits;
+	fFrac = fLen - fExp - 1;
+
+	/* values used for biasing exponents */
+	int dBias,
+		fBias;
+
+	dBias = pow(2, dExp-1) - 1;
+	fBias = pow(2, fExp-1) -1;
+
+	// dec some temps to use below
+	floatx t1 = fx; 
+	floatx t2 = fx;
+
+	floatx  fretSign,
+			fretExp,
+			fretFrac;
+
+	fretSign = fx >> (dLen - 1);
+
+	t1 <<= 1;
+	fretExp = t1 >> (dLen - fExp);
+	fretExp -= dBias; // -= 1023
+
+	t2 <<= (fExp+1);  //leaves us with just exponent bits
+	fretFrac = t2 >> (dExp + 1);
+
+	
+	returnFloatx += fretSign << (dLen-1);
+	returnFloatx += fretExp << dFrac;
+	returnFloatx += fretFrac;
+	u.f = returnFloatx;
+	return u.d;
+
 }
 
