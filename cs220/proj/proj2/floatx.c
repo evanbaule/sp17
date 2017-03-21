@@ -8,16 +8,19 @@
 floatx doubleToFloatx(const floatxDef *def, double value) {
 	/* Put your code here */
 	floatx returnFloatx = 0;
+	floatx makeup = *(floatx*) &value; //Gives us the bit makeup of @value as a floatx
 
 
-	/* General Use Ints */
+	/* Init of all ints used for computation of floatx */
 	int doubleLength, //Length of standard double
 		dExp, // # of expbits in standard double
 		dFrac, // # of fracbits in standard double
 		fLen, //total # of bits from definition
 		fExp, //number of fraction bits to be used in return floatx, taken from function call
 		fFrac, //number of exponent bits in return floatx
-		maxFloatx; //maximum value of a floatx;
+		maxFloatx, //Maximum value of a floatx
+		dBias, //bias for a double
+	   	fxBias; //bias for a custom size floatx; //maximum value of a floatx;
 
 	doubleLength = sizeof(value) * 8; //gives total length of a standard double
 	dExp = 11; // # of expbits in a standard double
@@ -29,35 +32,53 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 
 	maxFloatx = pow(2, fExp) -1;
 
-	int dBias, //bias for a double
-	   	fxBias; //bias for a custom size floatx
-
+	/* Bias values */
 	dBias = pow(2, dExp-1) - 1;
 	fxBias = pow(2, fExp-1) -1;
 	
-
 	/* Variables to use in construction of returnFloatx */
 	floatx 	retSign, //sign bit
 			retExp, //exponent bits
 			retFrac; //fraction bits
 
-	floatx makeup = *(floatx*) &value; //Gives us the bit makeup of @value as a floatx
-	floatx temp1 = makeup;
-	floatx temp2 = makeup;
+	/* Shifting to Isolate 3 parts of the floatx necessary for construction */
+	
+	/*
+		Sign Bit
+			Make copy of the bit makeup for value
+			Shift it 1 less than its total length, isolating the most significant bit -> the sign bit
+	*/
+	floatx copy = makeup;
+	copy >>= doubleLength - 1;
+	retSign = copy; 
 
-	//sign
-	retSign = makeup >> (doubleLength-1); //gets sign bit
+	/*
+		Exponent Bits
+			Reset the copy temp
+			Shift it to the left once to eliminate the sign bit
+			Shift it to the right 1 more than the total amount of fraction bits, isolating the exponent bits
+			Bias the exponent bits by subtracting 2^(dFrac-1)-1  (subtract 1023)
+	*/
+	copy = makeup; //reset copy
+	copy <<= 1; 
+	copy >>= (dFrac + 1);
+	copy -= dBias; // -= 1023
+	retExp = copy;
 
-	//exp
-	temp1 <<= 1; //chop off sign bit
-	retExp = temp1 >> (dFrac + 1);
-	retExp -= dBias; //biases the exponent by the double bias value 1023
+	/*
+		Fraction Bits
+			Reset the copy temp
+			Shift left once to eliminate the sign bit
+			Shift left again to eliminate the exponent bits (these could be done simultaneously, but I seperated them to clean it up)
+			Shift all the way right to isolate only the fraction bits
 
-	//frac
-	temp2 <<= (dExp+1);  //leaves us with just exponent bits
-	retFrac = temp2 >> (doubleLength - fFrac - 1);
+	*/
+	copy = makeup; 
+	copy <<= 1;
+	copy <<= (dExp);  
+	copy >>= (doubleLength - fFrac - 1);
+	retFrac = copy;
 
-	//rounding bits
 	if((retFrac%2) == 1){
 		retFrac += 0x1;
 	}
@@ -81,8 +102,15 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 
 
 	//build
-	returnFloatx += retSign << (fLen-1);
-	returnFloatx += retExp << fFrac;
+	/* -- Add Sign Bit -- */
+	retSign <<= (fLen-1);
+	returnFloatx += retSign;
+
+	/* -- Add Exponent Bits -- */
+	retExp <<= fFrac;
+	returnFloatx += retExp;
+
+	/* -- Add Frac Bits -- */
 	returnFloatx += retFrac;
 	return returnFloatx;
 }
