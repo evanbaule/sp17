@@ -6,10 +6,9 @@
 	best approximates value
 -------------------------------------------------------------------------------- */
 floatx doubleToFloatx(const floatxDef *def, double value) {
-	/* Put your code here */
+
 	floatx returnFloatx = 0;
 	floatx makeup = *(floatx*) &value; //Gives us the bit makeup of @value as a floatx
-
 
 	/* --------------------------------------------------------------------------
 	Below: Init of all ints used for computation of floatx 
@@ -106,11 +105,9 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	/* Case 2: Values Too Small (Denormalized) */
 	signed long denExp = (signed long) retExp;
 	if(denExp < 0){
-
+		printf("Sorry, we just aren't gonna support that :(");
+		abort();
 	}
-
-
-
 
 	/* --------------------------------------------------------------------------
 	Below: Construction of our return value,
@@ -134,80 +131,118 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
  */
 double floatxToDouble(const floatxDef *def, floatx fx) {
 	//wayyyyy less comments down here because a lot of the stuff is the same, especially vars
+	
+	floatx returnFloatx = 0; //use this and then copy over the value via the union
+	
 	/* Union used to copy over retvals */
 	union{
 		floatx f;
 		double d;
-	}u;
+	}join;
 
-	floatx returnFloatx = 0; //use this and then copy over the 
+	
 
-	/* size trackers */
+	/* --------------------------------------------------------------------------
+	Below: Init of all ints used for computation of floatx 
+		Since we are using the union to copy over the values, 
+		we alter the given floatx appropriately to format it as a double 
+		then "cast" it via the union. This avoid explicit type casting.
+
+		Since these are mostly the same as above, I will leave out comments describing them
+	----------------------------------------------------------------------------- */
 	int dLen,
 		dExp,
 		dFrac,
-
 		fLen,
 		fExp,
-		fFrac;
+		fFrac,
+		dBias,
+		fBias;
 
-	/* double specs */
-	//double d = 0; //just to grab size
 	dLen = 64; 
 	dExp = 11; 
 	dFrac = 52; 
 
-	/* floatx specs */
 	fLen = def->totBits; 
 	fExp = def->expBits;
 	fFrac = fLen - fExp - 1;
 
-	fx <<= (dLen - fLen);
-
-	/* values used for biasing exponents */
-	int dBias,
-		fBias;
-
 	dBias = pow(2, dExp-1) - 1;
 	fBias = pow(2, fExp-1) - 1;
 
-	// dec some temps to use below
-	floatx t1 = fx; 
-	floatx t2 = fx;
-	
+	fx <<= (dLen - fLen);
+
+	/* --------------------------------------------------------------------------
+	Below: Shifting Bits in order to isolate the 3 pieces of our return floatx
+	----------------------------------------------------------------------------- */
+
 	/* -- Used to build final return value -- */
 	floatx  fretSign,
 			fretExp,
-			fretFrac;
+			fretFrac,
+			copy;
+	
+	/*
+	Sign Bit
+		Make copy of the bit makeup for fx
+		Shift it 1 less than its total length, isolating the most significant bit -> the sign bit
+	*/
+	copy = fx;
+	copy >>= (dLen - 1);
+	fretSign = copy;
 
-	/* -- Return Value Sign Bit  -- */
-	fretSign = fx >> (dLen - 1);
+	/*
+	Exponent Bits
+		Reset the copy temp
+		Shift it to the left once to eliminate the sign bit
+		Shift it to the right 1 more than the total amount of fraction bits, isolating the exponent bits
+		Bias the exponent bits by subtracting 2^(dFrac-1)-1  (subtract 1023)
+	*/
+	copy = fx;
+	copy <<= 1;
+	copy >>= (dLen - fExp);
+	copy -= fBias;
+	fretExp = copy;
 
-	/* -- Return Value Exponent Bits  -- */
-	t1 <<= 1;
-	fretExp = t1 >> (dLen - fExp);
-	fretExp -= fBias;
+	/*
+	Fraction Bits
+		Reset the copy temp
+		Shift left once to eliminate the sign bit
+		Shift left again to eliminate the exponent bits (these could be done simultaneously, but I seperated them to clean it up)
+		Shift all the way right to isolate only the fraction bits
+	*/
+	copy = fx;
+	copy <<= 1;
+	copy <<= fExp;  
+	copy >>= (dExp + 1);
+	fretFrac = copy;
 
-	/* -- Return Value Fraction Bits  -- */
-	t2 <<= (fExp+1);  
-	fretFrac = t2 >> (dExp + 1);
 
-	// case: infinity
+	/* --------------------------------------------------------------------------
+	Below: Evaluating Special Cases
+	----------------------------------------------------------------------------- */
+	/* Case 1: Values Too Large (Infinite) */
 	if(fretExp >= dBias || fretExp >= fBias){
 		return INFINITY;
 	} else {
 		fretExp += dBias;
 	}
+
+	/* Case 2: Values Too Small (Denormal) */
+	// :(
 	
 
-	/* -- Build Return floatx -- */
+	/* --------------------------------------------------------------------------
+	Below: Construction of our return value, a remapped representation of '@param: fx'
+	which will be subsequently unionized to match produce a return value of type double
+	----------------------------------------------------------------------------- */
 	returnFloatx += fretSign << (dLen-1);
 	returnFloatx += fretExp << dFrac;
 	returnFloatx += fretFrac;
 
 	/* -- Return -- */
-	u.f = returnFloatx;
-	return u.d;
+	join.f = returnFloatx;
+	return join.d;
 
 
 }
