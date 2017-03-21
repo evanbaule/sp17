@@ -57,12 +57,11 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	temp2 <<= (dExp+1);  //leaves us with just exponent bits
 	retFrac = temp2 >> (doubleLength - fFrac - 1);
 
+	//rounding bits
 	if((retFrac%2) == 1){
-		retFrac >>= 1;
 		retFrac += 0x1;
-	} else {
-		retFrac >>= 1;
 	}
+	retFrac >>= 1;
 
 	//case: infinity
 	if(retExp >= dBias || retExp >= fxBias){
@@ -73,6 +72,10 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	}
 
 	//case: denormal
+	signed long denExp = (signed long) retExp;
+	if(denExp < 0){
+
+	}
 
 
 
@@ -117,6 +120,8 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 	fExp = def->expBits;
 	fFrac = fLen - fExp - 1;
 
+	fx <<= (dLen - fLen);
+
 	/* values used for biasing exponents */
 	int dBias,
 		fBias;
@@ -127,14 +132,11 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 	// dec some temps to use below
 	floatx t1 = fx; 
 	floatx t2 = fx;
-
+	
+	/* -- Used to build final return value -- */
 	floatx  fretSign,
 			fretExp,
 			fretFrac;
-
-
-	//fx <<= (dLen - fLen);
-
 
 	/* -- Return Value Sign Bit  -- */
 	fretSign = fx >> (dLen - 1);
@@ -142,18 +144,29 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 	/* -- Return Value Exponent Bits  -- */
 	t1 <<= 1;
 	fretExp = t1 >> (dLen - fExp);
-	fretExp -= fBias; // -= 1023
-	
+	fretExp -= fBias;
+
 	/* -- Return Value Fraction Bits  -- */
 	t2 <<= (fExp+1);  
 	fretFrac = t2 >> (dExp + 1);
+
+	// case: infinity
+	if(fretExp >= dBias || fretExp >= fBias){
+		return INFINITY;
+	} else {
+		fretExp += dBias;
+	}
+	
 
 	/* -- Build Return floatx -- */
 	returnFloatx += fretSign << (dLen-1);
 	returnFloatx += fretExp << dFrac;
 	returnFloatx += fretFrac;
+
+	/* -- Return -- */
 	u.f = returnFloatx;
 	return u.d;
+
 
 }
 
