@@ -37,8 +37,6 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	dBias = pow(2, dExp-1) - 1;
 	fxBias = pow(2, fExp-1) -1;
 	
-	
-
 	/* --------------------------------------------------------------------------
 	Below: Shifting Bits in order to isolate the 3 pieces of our return floatx
 	----------------------------------------------------------------------------- */
@@ -67,7 +65,7 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	*/
 	copy = makeup; //reset copy
 	copy <<= 1; 
-	copy >>= (dFrac + 1);
+	copy >>= dFrac + 1;
 	copy -= dBias; // -= 1023
 	retExp = copy;
 
@@ -80,7 +78,7 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	*/
 	copy = makeup; 
 	copy <<= 1;
-	copy <<= (dExp);  
+	copy <<= dExp;  
 	copy >>= (dLen - fFrac - 1);
 	//Rounding
 	if((copy%2) == 1){
@@ -88,7 +86,6 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	}
 	copy >>= 1;
 	retFrac = copy;
-
 
 	/* --------------------------------------------------------------------------
 	Below: Evaluating Special Cases
@@ -113,7 +110,7 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	a floatx representation of '@param: value'
 	----------------------------------------------------------------------------- */
 	/*  Add Sign Bit  */
-	retSign <<= (fLen-1);
+	retSign <<= fLen-1;
 	returnFloatx += retSign;
 
 	/*  Add Exponent Bits  */
@@ -132,18 +129,10 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 	//wayyyyy less comments down here because a lot of the stuff is the same, especially vars
 	
 	floatx returnFloatx = 0; //use this and then copy over the value via the union
-	
-	/* Union used to copy over retvals */
-	union{
-		floatx f;
-		double d;
-	}join;
-
-	
 
 	/* --------------------------------------------------------------------------
 	Below: Init of all ints used for computation of floatx 
-		Since we are using the union to copy over the values, 
+		Since we are using a union to copy over the values, 
 		we alter the given floatx appropriately to format it as a double 
 		then "cast" it via the union. This avoid explicit type casting.
 
@@ -169,7 +158,7 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 	dBias = pow(2, dExp-1) - 1;
 	fBias = pow(2, fExp-1) - 1;
 
-	fx <<= (dLen - fLen);
+	fx <<= (dLen - fLen); // Eliminate leading zeros
 
 	/* --------------------------------------------------------------------------
 	Below: Shifting Bits in order to isolate the 3 pieces of our return floatx
@@ -184,18 +173,18 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 	/*
 	Sign Bit
 		Make copy of the bit makeup for fx
-		Shift it 1 less than its total length, isolating the most significant bit -> the sign bit
+		Shift it 1 less than its total length to the right, isolating the most significant bit -> the sign bit
 	*/
 	copy = fx;
-	copy >>= (dLen - 1);
+	copy >>= dLen - 1;
 	fretSign = copy;
 
 	/*
 	Exponent Bits
 		Reset the copy temp
 		Shift it to the left once to eliminate the sign bit
-		Shift it to the right 1 more than the total amount of fraction bits, isolating the exponent bits
-		Bias the exponent bits by subtracting 2^(dFrac-1)-1  (subtract 1023)
+		Shift it to the right, isolating the exponent bits
+		Bias the exponent bits by subtracting 2^(fFrac-1)-1  
 	*/
 	copy = fx;
 	copy <<= 1;
@@ -213,7 +202,7 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 	copy = fx;
 	copy <<= 1;
 	copy <<= fExp;  
-	copy >>= (dExp + 1);
+	copy >>= dExp + 1;
 	fretFrac = copy;
 
 
@@ -222,19 +211,29 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 	----------------------------------------------------------------------------- */
 	/* Case 1: Values Too Large (Infinite) */
 	if(fretExp >= dBias || fretExp >= fBias){
+		if(fretSign){
+			return -INFINITY;
+		}
 		return INFINITY;
 	} else {
 		fretExp += dBias;
 	}
 
 	/* Case 2: Values Too Small (Denormal) */
-	// :(
+	// WIP
 	
 
 	/* --------------------------------------------------------------------------
 	Below: Construction of our return value, a remapped representation of '@param: fx'
 	which will be subsequently unionized to match produce a return value of type double
 	----------------------------------------------------------------------------- */
+
+	/* Union used to copy over retvals */
+	union{
+		floatx f;
+		double d;
+	}join;
+
 	/*  Add Sign Bit  */
 	fretSign <<= (dLen-1);
 	returnFloatx += fretSign;
