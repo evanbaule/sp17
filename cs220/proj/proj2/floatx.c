@@ -227,7 +227,6 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 	Below: Construction of our return value, a remapped representation of '@param: fx'
 	which will be subsequently unionized to match produce a return value of type double
 	----------------------------------------------------------------------------- */
-
 	/* Union used to copy over retvals */
 	union{
 		floatx f;
@@ -248,7 +247,6 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 
 	/* Return */
 	return join.d;
-
-
+	
 }
 
