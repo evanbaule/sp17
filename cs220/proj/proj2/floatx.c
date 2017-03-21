@@ -122,7 +122,7 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 		fBias;
 
 	dBias = pow(2, dExp-1) - 1;
-	fBias = pow(2, fExp-1) -1;
+	fBias = pow(2, fExp-1) - 1;
 
 	// dec some temps to use below
 	floatx t1 = fx; 
@@ -132,16 +132,23 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 			fretExp,
 			fretFrac;
 
+
+	//fx <<= (dLen - fLen);
+
+
+	/* -- Return Value Sign Bit  -- */
 	fretSign = fx >> (dLen - 1);
 
+	/* -- Return Value Exponent Bits  -- */
 	t1 <<= 1;
 	fretExp = t1 >> (dLen - fExp);
-	fretExp -= dBias; // -= 1023
-
-	t2 <<= (fExp+1);  //leaves us with just exponent bits
+	fretExp -= fBias; // -= 1023
+	
+	/* -- Return Value Fraction Bits  -- */
+	t2 <<= (fExp+1);  
 	fretFrac = t2 >> (dExp + 1);
 
-	
+	/* -- Build Return floatx -- */
 	returnFloatx += fretSign << (dLen-1);
 	returnFloatx += fretExp << dFrac;
 	returnFloatx += fretFrac;
