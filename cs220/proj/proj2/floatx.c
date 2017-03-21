@@ -126,7 +126,6 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
  *  (as defined by *def).
  */
 double floatxToDouble(const floatxDef *def, floatx fx) {
-	//wayyyyy less comments down here because a lot of the stuff is the same, especially vars
 	
 	floatx returnFloatx = 0; //use this and then copy over the value via the union
 
@@ -247,6 +246,6 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 
 	/* Return */
 	return join.d;
-	
+
 }
 
