@@ -105,8 +105,7 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 	/* Case 2: Values Too Small (Denormalized) */
 	signed long denExp = (signed long) retExp;
 	if(denExp < 0){
-		printf("Sorry, we just aren't gonna support that :(");
-		abort();
+		
 	}
 
 	/* --------------------------------------------------------------------------
@@ -236,12 +235,19 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 	Below: Construction of our return value, a remapped representation of '@param: fx'
 	which will be subsequently unionized to match produce a return value of type double
 	----------------------------------------------------------------------------- */
-	returnFloatx += fretSign << (dLen-1);
-	returnFloatx += fretExp << dFrac;
-	returnFloatx += fretFrac;
+	/*  Add Sign Bit  */
+	fretSign <<= (dLen-1);
+	returnFloatx += fretSign;
 
-	/* -- Return -- */
+	/*  Add Exponent Bits  */
+	fretExp <<= dFrac;
+	returnFloatx += fretExp;
+
+	/*  Add Fraction Bits  */
+	returnFloatx += fretFrac;
 	join.f = returnFloatx;
+
+	/* Return */
 	return join.d;
 
 
