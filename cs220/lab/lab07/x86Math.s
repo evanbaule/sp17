@@ -3,51 +3,62 @@
    3              	#	compiled by GNU C version 4.9.2, GMP version 6.0.0, MPFR version 3.1.2-p3, MPC version 1.0.2
    4              	# GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
    5              	# options passed:  -imultiarch x86_64-linux-gnu x86Math.c -mtune=generic
-   6              	# -march=x86-64 -g -O0 -Wall -fverbose-asm
+   6              	# -march=x86-64 -g -O1 -Wall -fverbose-asm
    7              	# options enabled:  -faggressive-loop-optimizations
-   8              	# -fasynchronous-unwind-tables -fauto-inc-dec -fcommon
-   9              	# -fdelete-null-pointer-checks -fdwarf2-cfi-asm -fearly-inlining
-  10              	# -feliminate-unused-debug-types -ffunction-cse -fgcse-lm -fgnu-runtime
-  11              	# -fgnu-unique -fident -finline-atomics -fira-hoist-pressure
-  12              	# -fira-share-save-slots -fira-share-spill-slots -fivopts
-  13              	# -fkeep-static-consts -fleading-underscore -fmath-errno
-  14              	# -fmerge-debug-strings -fpeephole -fprefetch-loop-arrays
-  15              	# -freg-struct-return -fsched-critical-path-heuristic
-  16              	# -fsched-dep-count-heuristic -fsched-group-heuristic -fsched-interblock
-  17              	# -fsched-last-insn-heuristic -fsched-rank-heuristic -fsched-spec
-  18              	# -fsched-spec-insn-heuristic -fsched-stalled-insns-dep -fshow-column
-  19              	# -fsigned-zeros -fsplit-ivs-in-unroller -fstrict-volatile-bitfields
-  20              	# -fsync-libcalls -ftrapping-math -ftree-coalesce-vars -ftree-cselim
-  21              	# -ftree-forwprop -ftree-loop-if-convert -ftree-loop-im -ftree-loop-ivcanon
-  22              	# -ftree-loop-optimize -ftree-parallelize-loops= -ftree-phiprop
-  23              	# -ftree-reassoc -ftree-scev-cprop -funit-at-a-time -funwind-tables
-  24              	# -fverbose-asm -fzero-initialized-in-bss -m128bit-long-double -m64 -m80387
-  25              	# -malign-stringops -mavx256-split-unaligned-load
-  26              	# -mavx256-split-unaligned-store -mfancy-math-387 -mfp-ret-in-387 -mfxsr
-  27              	# -mglibc -mieee-fp -mlong-double-80 -mmmx -mno-sse4 -mpush-args -mred-zone
-  28              	# -msse -msse2 -mtls-direct-seg-refs
-  29              	
-  30              		.text
-  31              	.Ltext0:
-  32              		.section	.rodata
-  33              	.LC0:
-  34 0000 496E766F 		.string	"Invoke as %s <number>\n"
-  34      6B652061 
-  34      73202573 
-  34      203C6E75 
-  34      6D626572 
-  35 0017 00       		.align 8
-  36              	.LC1:
-  37 0018 783D2564 		.string	"x=%d, x squared - 4x + 4 =%d divided by x-2=%d\n"
-  37      2C207820 
-  37      73717561 
-  37      72656420 
-  37      2D203478 
-  38              		.text
-  39              		.globl	main
-  41              	main:
-  42              	.LFB2:
-  43              		.file 1 "x86Math.c"
+   8              	# -fasynchronous-unwind-tables -fauto-inc-dec -fbranch-count-reg
+   9              	# -fcombine-stack-adjustments -fcommon -fcompare-elim -fcprop-registers
+  10              	# -fdefer-pop -fdelete-null-pointer-checks -fdwarf2-cfi-asm
+  11              	# -fearly-inlining -feliminate-unused-debug-types -fforward-propagate
+  12              	# -ffunction-cse -fgcse-lm -fgnu-runtime -fgnu-unique
+  13              	# -fguess-branch-probability -fident -fif-conversion -fif-conversion2
+  14              	# -finline -finline-atomics -finline-functions-called-once -fipa-profile
+  15              	# -fipa-pure-const -fipa-reference -fira-hoist-pressure
+  16              	# -fira-share-save-slots -fira-share-spill-slots -fivopts
+  17              	# -fkeep-static-consts -fleading-underscore -fmath-errno -fmerge-constants
+  18              	# -fmerge-debug-strings -fmove-loop-invariants -fomit-frame-pointer
+  19              	# -fpeephole -fprefetch-loop-arrays -freg-struct-return
+  20              	# -fsched-critical-path-heuristic -fsched-dep-count-heuristic
+  21              	# -fsched-group-heuristic -fsched-interblock -fsched-last-insn-heuristic
+  22              	# -fsched-rank-heuristic -fsched-spec -fsched-spec-insn-heuristic
+  23              	# -fsched-stalled-insns-dep -fshow-column -fshrink-wrap -fsigned-zeros
+  24              	# -fsplit-ivs-in-unroller -fsplit-wide-types -fstrict-volatile-bitfields
+  25              	# -fsync-libcalls -ftoplevel-reorder -ftrapping-math -ftree-bit-ccp
+  26              	# -ftree-ccp -ftree-ch -ftree-coalesce-vars -ftree-copy-prop
+  27              	# -ftree-copyrename -ftree-cselim -ftree-dce -ftree-dominator-opts
+  28              	# -ftree-dse -ftree-forwprop -ftree-fre -ftree-loop-if-convert
+  29              	# -ftree-loop-im -ftree-loop-ivcanon -ftree-loop-optimize
+  30              	# -ftree-parallelize-loops= -ftree-phiprop -ftree-pta -ftree-reassoc
+  31              	# -ftree-scev-cprop -ftree-sink -ftree-slsr -ftree-sra -ftree-ter
+  32              	# -funit-at-a-time -funwind-tables -fvar-tracking
+  33              	# -fvar-tracking-assignments -fverbose-asm -fzero-initialized-in-bss
+  34              	# -m128bit-long-double -m64 -m80387 -malign-stringops
+  35              	# -mavx256-split-unaligned-load -mavx256-split-unaligned-store
+  36              	# -mfancy-math-387 -mfp-ret-in-387 -mfxsr -mglibc -mieee-fp
+  37              	# -mlong-double-80 -mmmx -mno-sse4 -mpush-args -mred-zone -msse -msse2
+  38              	# -mtls-direct-seg-refs
+  39              	
+  40              		.text
+  41              	.Ltext0:
+  42              		.section	.rodata.str1.1,"aMS",@progbits,1
+  43              	.LC0:
+  44 0000 496E766F 		.string	"Invoke as %s <number>\n"
+  44      6B652061 
+  44      73202573 
+  44      203C6E75 
+  44      6D626572 
+  45              		.section	.rodata.str1.8,"aMS",@progbits,1
+  46              		.align 8
+  47              	.LC1:
+  48 0000 783D2564 		.string	"x=%d, x squared - 4x + 4 =%d divided by x-2=%d\n"
+  48      2C207820 
+  48      73717561 
+  48      72656420 
+  48      2D203478 
+  49              		.text
+  50              		.globl	main
+  52              	main:
+  53              	.LFB21:
+  54              		.file 1 "x86Math.c"
    1:x86Math.c     **** #include <stdio.h>
    2:x86Math.c     **** #include <stdlib.h>
    3:x86Math.c     **** 
@@ -57,129 +68,345 @@
    7:x86Math.c     **** int divide(int x, int y);
    8:x86Math.c     **** 
    9:x86Math.c     **** int main(int argc, char **argv) {
-  44              		.loc 1 9 0
-  45              		.cfi_startproc
-  46 0000 55       		pushq	%rbp	#
-  47              		.cfi_def_cfa_offset 16
-  48              		.cfi_offset 6, -16
-  49 0001 4889E5   		movq	%rsp, %rbp	#,
-  50              		.cfi_def_cfa_register 6
-  51 0004 4883EC20 		subq	$32, %rsp	#,
-  52 0008 897DEC   		movl	%edi, -20(%rbp)	# argc, argc
-  53 000b 488975E0 		movq	%rsi, -32(%rbp)	# argv, argv
+  55              		.loc 1 9 0
+  56              		.cfi_startproc
+  57              	.LVL0:
+  58 0000 4883EC08 		subq	$8, %rsp	#,
+  59              		.cfi_def_cfa_offset 16
   10:x86Math.c     **** 	if (argc < 2) {
-  54              		.loc 1 10 0
-  55 000f 837DEC01 		cmpl	$1, -20(%rbp)	#, argc
-  56 0013 7F23     		jg	.L2	#,
+  60              		.loc 1 10 0
+  61 0004 83FF01   		cmpl	$1, %edi	#, argc
+  62 0007 7F19     		jg	.L2	#,
   11:x86Math.c     **** 		printf("Invoke as %s <number>\n",argv[0]);
-  57              		.loc 1 11 0
-  58 0015 488B45E0 		movq	-32(%rbp), %rax	# argv, tmp88
-  59 0019 488B00   		movq	(%rax), %rax	# *argv_3(D), D.2777
-  60 001c 4889C6   		movq	%rax, %rsi	# D.2777,
-  61 001f BF000000 		movl	$.LC0, %edi	#,
-  61      00
-  62 0024 B8000000 		movl	$0, %eax	#,
-  62      00
-  63 0029 E8000000 		call	printf	#
-  63      00
-  12:x86Math.c     **** 		return 1;
-  64              		.loc 1 12 0
-  65 002e B8010000 		movl	$1, %eax	#, D.2776
-  65      00
-  66 0033 E9A10000 		jmp	.L3	#
+  63              		.loc 1 11 0
+  64 0009 488B36   		movq	(%rsi), %rsi	# *argv_5(D),
+  65              	.LVL1:
+  66 000c BF000000 		movl	$.LC0, %edi	#,
   66      00
-  67              	.L2:
+  67              	.LVL2:
+  68 0011 B8000000 		movl	$0, %eax	#,
+  68      00
+  69 0016 E8000000 		call	printf	#
+  69      00
+  70              	.LVL3:
+  12:x86Math.c     **** 		return 1;
+  71              		.loc 1 12 0
+  72 001b B8010000 		movl	$1, %eax	#, D.2898
+  72      00
+  73 0020 EB47     		jmp	.L3	#
+  74              	.LVL4:
+  75              	.L2:
+  76              	.LBB18:
+  77              	.LBB19:
+  78              		.file 2 "/usr/include/stdlib.h"
+   1:/usr/include/stdlib.h **** /* Copyright (C) 1991-2014 Free Software Foundation, Inc.
+   2:/usr/include/stdlib.h ****    This file is part of the GNU C Library.
+   3:/usr/include/stdlib.h **** 
+   4:/usr/include/stdlib.h ****    The GNU C Library is free software; you can redistribute it and/or
+   5:/usr/include/stdlib.h ****    modify it under the terms of the GNU Lesser General Public
+   6:/usr/include/stdlib.h ****    License as published by the Free Software Foundation; either
+   7:/usr/include/stdlib.h ****    version 2.1 of the License, or (at your option) any later version.
+   8:/usr/include/stdlib.h **** 
+   9:/usr/include/stdlib.h ****    The GNU C Library is distributed in the hope that it will be useful,
+  10:/usr/include/stdlib.h ****    but WITHOUT ANY WARRANTY; without even the implied warranty of
+  11:/usr/include/stdlib.h ****    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  12:/usr/include/stdlib.h ****    Lesser General Public License for more details.
+  13:/usr/include/stdlib.h **** 
+  14:/usr/include/stdlib.h ****    You should have received a copy of the GNU Lesser General Public
+  15:/usr/include/stdlib.h ****    License along with the GNU C Library; if not, see
+  16:/usr/include/stdlib.h ****    <http://www.gnu.org/licenses/>.  */
+  17:/usr/include/stdlib.h **** 
+  18:/usr/include/stdlib.h **** /*
+  19:/usr/include/stdlib.h ****  *	ISO C99 Standard: 7.20 General utilities	<stdlib.h>
+  20:/usr/include/stdlib.h ****  */
+  21:/usr/include/stdlib.h **** 
+  22:/usr/include/stdlib.h **** #ifndef	_STDLIB_H
+  23:/usr/include/stdlib.h **** 
+  24:/usr/include/stdlib.h **** #include <features.h>
+  25:/usr/include/stdlib.h **** 
+  26:/usr/include/stdlib.h **** /* Get size_t, wchar_t and NULL from <stddef.h>.  */
+  27:/usr/include/stdlib.h **** #define		__need_size_t
+  28:/usr/include/stdlib.h **** #ifndef __need_malloc_and_calloc
+  29:/usr/include/stdlib.h **** # define	__need_wchar_t
+  30:/usr/include/stdlib.h **** # define	__need_NULL
+  31:/usr/include/stdlib.h **** #endif
+  32:/usr/include/stdlib.h **** #include <stddef.h>
+  33:/usr/include/stdlib.h **** 
+  34:/usr/include/stdlib.h **** __BEGIN_DECLS
+  35:/usr/include/stdlib.h **** 
+  36:/usr/include/stdlib.h **** #ifndef __need_malloc_and_calloc
+  37:/usr/include/stdlib.h **** #define	_STDLIB_H	1
+  38:/usr/include/stdlib.h **** 
+  39:/usr/include/stdlib.h **** #if (defined __USE_XOPEN || defined __USE_XOPEN2K8) && !defined _SYS_WAIT_H
+  40:/usr/include/stdlib.h **** /* XPG requires a few symbols from <sys/wait.h> being defined.  */
+  41:/usr/include/stdlib.h **** # include <bits/waitflags.h>
+  42:/usr/include/stdlib.h **** # include <bits/waitstatus.h>
+  43:/usr/include/stdlib.h **** 
+  44:/usr/include/stdlib.h **** # ifdef __USE_BSD
+  45:/usr/include/stdlib.h **** 
+  46:/usr/include/stdlib.h **** /* Lots of hair to allow traditional BSD use of `union wait'
+  47:/usr/include/stdlib.h ****    as well as POSIX.1 use of `int' for the status word.  */
+  48:/usr/include/stdlib.h **** 
+  49:/usr/include/stdlib.h **** #  if defined __GNUC__ && !defined __cplusplus
+  50:/usr/include/stdlib.h **** #   define __WAIT_INT(status) \
+  51:/usr/include/stdlib.h ****   (__extension__ (((union { __typeof(status) __in; int __i; }) \
+  52:/usr/include/stdlib.h **** 		   { .__in = (status) }).__i))
+  53:/usr/include/stdlib.h **** #  else
+  54:/usr/include/stdlib.h **** #   define __WAIT_INT(status)	(*(int *) &(status))
+  55:/usr/include/stdlib.h **** #  endif
+  56:/usr/include/stdlib.h **** 
+  57:/usr/include/stdlib.h **** /* This is the type of the argument to `wait'.  The funky union
+  58:/usr/include/stdlib.h ****    causes redeclarations with either `int *' or `union wait *' to be
+  59:/usr/include/stdlib.h ****    allowed without complaint.  __WAIT_STATUS_DEFN is the type used in
+  60:/usr/include/stdlib.h ****    the actual function definitions.  */
+  61:/usr/include/stdlib.h **** 
+  62:/usr/include/stdlib.h **** #  if !defined __GNUC__ || __GNUC__ < 2 || defined __cplusplus
+  63:/usr/include/stdlib.h **** #   define __WAIT_STATUS	void *
+  64:/usr/include/stdlib.h **** #   define __WAIT_STATUS_DEFN	void *
+  65:/usr/include/stdlib.h **** #  else
+  66:/usr/include/stdlib.h **** /* This works in GCC 2.6.1 and later.  */
+  67:/usr/include/stdlib.h **** typedef union
+  68:/usr/include/stdlib.h ****   {
+  69:/usr/include/stdlib.h ****     union wait *__uptr;
+  70:/usr/include/stdlib.h ****     int *__iptr;
+  71:/usr/include/stdlib.h ****   } __WAIT_STATUS __attribute__ ((__transparent_union__));
+  72:/usr/include/stdlib.h **** #   define __WAIT_STATUS_DEFN	int *
+  73:/usr/include/stdlib.h **** #  endif
+  74:/usr/include/stdlib.h **** 
+  75:/usr/include/stdlib.h **** # else /* Don't use BSD.  */
+  76:/usr/include/stdlib.h **** 
+  77:/usr/include/stdlib.h **** #  define __WAIT_INT(status)	(status)
+  78:/usr/include/stdlib.h **** #  define __WAIT_STATUS		int *
+  79:/usr/include/stdlib.h **** #  define __WAIT_STATUS_DEFN	int *
+  80:/usr/include/stdlib.h **** 
+  81:/usr/include/stdlib.h **** # endif /* Use BSD.  */
+  82:/usr/include/stdlib.h **** 
+  83:/usr/include/stdlib.h **** /* Define the macros <sys/wait.h> also would define this way.  */
+  84:/usr/include/stdlib.h **** # define WEXITSTATUS(status)	__WEXITSTATUS (__WAIT_INT (status))
+  85:/usr/include/stdlib.h **** # define WTERMSIG(status)	__WTERMSIG (__WAIT_INT (status))
+  86:/usr/include/stdlib.h **** # define WSTOPSIG(status)	__WSTOPSIG (__WAIT_INT (status))
+  87:/usr/include/stdlib.h **** # define WIFEXITED(status)	__WIFEXITED (__WAIT_INT (status))
+  88:/usr/include/stdlib.h **** # define WIFSIGNALED(status)	__WIFSIGNALED (__WAIT_INT (status))
+  89:/usr/include/stdlib.h **** # define WIFSTOPPED(status)	__WIFSTOPPED (__WAIT_INT (status))
+  90:/usr/include/stdlib.h **** # ifdef __WIFCONTINUED
+  91:/usr/include/stdlib.h **** #  define WIFCONTINUED(status)	__WIFCONTINUED (__WAIT_INT (status))
+  92:/usr/include/stdlib.h **** # endif
+  93:/usr/include/stdlib.h **** #endif	/* X/Open or XPG7 and <sys/wait.h> not included.  */
+  94:/usr/include/stdlib.h **** 
+  95:/usr/include/stdlib.h **** __BEGIN_NAMESPACE_STD
+  96:/usr/include/stdlib.h **** /* Returned by `div'.  */
+  97:/usr/include/stdlib.h **** typedef struct
+  98:/usr/include/stdlib.h ****   {
+  99:/usr/include/stdlib.h ****     int quot;			/* Quotient.  */
+ 100:/usr/include/stdlib.h ****     int rem;			/* Remainder.  */
+ 101:/usr/include/stdlib.h ****   } div_t;
+ 102:/usr/include/stdlib.h **** 
+ 103:/usr/include/stdlib.h **** /* Returned by `ldiv'.  */
+ 104:/usr/include/stdlib.h **** #ifndef __ldiv_t_defined
+ 105:/usr/include/stdlib.h **** typedef struct
+ 106:/usr/include/stdlib.h ****   {
+ 107:/usr/include/stdlib.h ****     long int quot;		/* Quotient.  */
+ 108:/usr/include/stdlib.h ****     long int rem;		/* Remainder.  */
+ 109:/usr/include/stdlib.h ****   } ldiv_t;
+ 110:/usr/include/stdlib.h **** # define __ldiv_t_defined	1
+ 111:/usr/include/stdlib.h **** #endif
+ 112:/usr/include/stdlib.h **** __END_NAMESPACE_STD
+ 113:/usr/include/stdlib.h **** 
+ 114:/usr/include/stdlib.h **** #if defined __USE_ISOC99 && !defined __lldiv_t_defined
+ 115:/usr/include/stdlib.h **** __BEGIN_NAMESPACE_C99
+ 116:/usr/include/stdlib.h **** /* Returned by `lldiv'.  */
+ 117:/usr/include/stdlib.h **** __extension__ typedef struct
+ 118:/usr/include/stdlib.h ****   {
+ 119:/usr/include/stdlib.h ****     long long int quot;		/* Quotient.  */
+ 120:/usr/include/stdlib.h ****     long long int rem;		/* Remainder.  */
+ 121:/usr/include/stdlib.h ****   } lldiv_t;
+ 122:/usr/include/stdlib.h **** # define __lldiv_t_defined	1
+ 123:/usr/include/stdlib.h **** __END_NAMESPACE_C99
+ 124:/usr/include/stdlib.h **** #endif
+ 125:/usr/include/stdlib.h **** 
+ 126:/usr/include/stdlib.h **** 
+ 127:/usr/include/stdlib.h **** /* The largest number rand will return (same as INT_MAX).  */
+ 128:/usr/include/stdlib.h **** #define	RAND_MAX	2147483647
+ 129:/usr/include/stdlib.h **** 
+ 130:/usr/include/stdlib.h **** 
+ 131:/usr/include/stdlib.h **** /* We define these the same for all machines.
+ 132:/usr/include/stdlib.h ****    Changes from this to the outside world should be done in `_exit'.  */
+ 133:/usr/include/stdlib.h **** #define	EXIT_FAILURE	1	/* Failing exit status.  */
+ 134:/usr/include/stdlib.h **** #define	EXIT_SUCCESS	0	/* Successful exit status.  */
+ 135:/usr/include/stdlib.h **** 
+ 136:/usr/include/stdlib.h **** 
+ 137:/usr/include/stdlib.h **** /* Maximum length of a multibyte character in the current locale.  */
+ 138:/usr/include/stdlib.h **** #define	MB_CUR_MAX	(__ctype_get_mb_cur_max ())
+ 139:/usr/include/stdlib.h **** extern size_t __ctype_get_mb_cur_max (void) __THROW __wur;
+ 140:/usr/include/stdlib.h **** 
+ 141:/usr/include/stdlib.h **** 
+ 142:/usr/include/stdlib.h **** __BEGIN_NAMESPACE_STD
+ 143:/usr/include/stdlib.h **** /* Convert a string to a floating-point number.  */
+ 144:/usr/include/stdlib.h **** extern double atof (const char *__nptr)
+ 145:/usr/include/stdlib.h ****      __THROW __attribute_pure__ __nonnull ((1)) __wur;
+ 146:/usr/include/stdlib.h **** /* Convert a string to an integer.  */
+ 147:/usr/include/stdlib.h **** extern int atoi (const char *__nptr)
+ 148:/usr/include/stdlib.h ****      __THROW __attribute_pure__ __nonnull ((1)) __wur;
+ 149:/usr/include/stdlib.h **** /* Convert a string to a long integer.  */
+ 150:/usr/include/stdlib.h **** extern long int atol (const char *__nptr)
+ 151:/usr/include/stdlib.h ****      __THROW __attribute_pure__ __nonnull ((1)) __wur;
+ 152:/usr/include/stdlib.h **** __END_NAMESPACE_STD
+ 153:/usr/include/stdlib.h **** 
+ 154:/usr/include/stdlib.h **** #if defined __USE_ISOC99 || defined __USE_MISC
+ 155:/usr/include/stdlib.h **** __BEGIN_NAMESPACE_C99
+ 156:/usr/include/stdlib.h **** /* Convert a string to a long long integer.  */
+ 157:/usr/include/stdlib.h **** __extension__ extern long long int atoll (const char *__nptr)
+ 158:/usr/include/stdlib.h ****      __THROW __attribute_pure__ __nonnull ((1)) __wur;
+ 159:/usr/include/stdlib.h **** __END_NAMESPACE_C99
+ 160:/usr/include/stdlib.h **** #endif
+ 161:/usr/include/stdlib.h **** 
+ 162:/usr/include/stdlib.h **** __BEGIN_NAMESPACE_STD
+ 163:/usr/include/stdlib.h **** /* Convert a string to a floating-point number.  */
+ 164:/usr/include/stdlib.h **** extern double strtod (const char *__restrict __nptr,
+ 165:/usr/include/stdlib.h **** 		      char **__restrict __endptr)
+ 166:/usr/include/stdlib.h ****      __THROW __nonnull ((1));
+ 167:/usr/include/stdlib.h **** __END_NAMESPACE_STD
+ 168:/usr/include/stdlib.h **** 
+ 169:/usr/include/stdlib.h **** #ifdef	__USE_ISOC99
+ 170:/usr/include/stdlib.h **** __BEGIN_NAMESPACE_C99
+ 171:/usr/include/stdlib.h **** /* Likewise for `float' and `long double' sizes of floating-point numbers.  */
+ 172:/usr/include/stdlib.h **** extern float strtof (const char *__restrict __nptr,
+ 173:/usr/include/stdlib.h **** 		     char **__restrict __endptr) __THROW __nonnull ((1));
+ 174:/usr/include/stdlib.h **** 
+ 175:/usr/include/stdlib.h **** extern long double strtold (const char *__restrict __nptr,
+ 176:/usr/include/stdlib.h **** 			    char **__restrict __endptr)
+ 177:/usr/include/stdlib.h ****      __THROW __nonnull ((1));
+ 178:/usr/include/stdlib.h **** __END_NAMESPACE_C99
+ 179:/usr/include/stdlib.h **** #endif
+ 180:/usr/include/stdlib.h **** 
+ 181:/usr/include/stdlib.h **** __BEGIN_NAMESPACE_STD
+ 182:/usr/include/stdlib.h **** /* Convert a string to a long integer.  */
+ 183:/usr/include/stdlib.h **** extern long int strtol (const char *__restrict __nptr,
+ 184:/usr/include/stdlib.h **** 			char **__restrict __endptr, int __base)
+ 185:/usr/include/stdlib.h ****      __THROW __nonnull ((1));
+ 186:/usr/include/stdlib.h **** /* Convert a string to an unsigned long integer.  */
+ 187:/usr/include/stdlib.h **** extern unsigned long int strtoul (const char *__restrict __nptr,
+ 188:/usr/include/stdlib.h **** 				  char **__restrict __endptr, int __base)
+ 189:/usr/include/stdlib.h ****      __THROW __nonnull ((1));
+ 190:/usr/include/stdlib.h **** __END_NAMESPACE_STD
+ 191:/usr/include/stdlib.h **** 
+ 192:/usr/include/stdlib.h **** #ifdef __USE_BSD
+ 193:/usr/include/stdlib.h **** /* Convert a string to a quadword integer.  */
+ 194:/usr/include/stdlib.h **** __extension__
+ 195:/usr/include/stdlib.h **** extern long long int strtoq (const char *__restrict __nptr,
+ 196:/usr/include/stdlib.h **** 			     char **__restrict __endptr, int __base)
+ 197:/usr/include/stdlib.h ****      __THROW __nonnull ((1));
+ 198:/usr/include/stdlib.h **** /* Convert a string to an unsigned quadword integer.  */
+ 199:/usr/include/stdlib.h **** __extension__
+ 200:/usr/include/stdlib.h **** extern unsigned long long int strtouq (const char *__restrict __nptr,
+ 201:/usr/include/stdlib.h **** 				       char **__restrict __endptr, int __base)
+ 202:/usr/include/stdlib.h ****      __THROW __nonnull ((1));
+ 203:/usr/include/stdlib.h **** #endif /* Use BSD.  */
+ 204:/usr/include/stdlib.h **** 
+ 205:/usr/include/stdlib.h **** #if defined __USE_ISOC99 || defined __USE_MISC
+ 206:/usr/include/stdlib.h **** __BEGIN_NAMESPACE_C99
+ 207:/usr/include/stdlib.h **** /* Convert a string to a quadword integer.  */
+ 208:/usr/include/stdlib.h **** __extension__
+ 209:/usr/include/stdlib.h **** extern long long int strtoll (const char *__restrict __nptr,
+ 210:/usr/include/stdlib.h **** 			      char **__restrict __endptr, int __base)
+ 211:/usr/include/stdlib.h ****      __THROW __nonnull ((1));
+ 212:/usr/include/stdlib.h **** /* Convert a string to an unsigned quadword integer.  */
+ 213:/usr/include/stdlib.h **** __extension__
+ 214:/usr/include/stdlib.h **** extern unsigned long long int strtoull (const char *__restrict __nptr,
+ 215:/usr/include/stdlib.h **** 					char **__restrict __endptr, int __base)
+ 216:/usr/include/stdlib.h ****      __THROW __nonnull ((1));
+ 217:/usr/include/stdlib.h **** __END_NAMESPACE_C99
+ 218:/usr/include/stdlib.h **** #endif /* ISO C99 or use MISC.  */
+ 219:/usr/include/stdlib.h **** 
+ 220:/usr/include/stdlib.h **** 
+ 221:/usr/include/stdlib.h **** #ifdef __USE_GNU
+ 222:/usr/include/stdlib.h **** /* The concept of one static locale per category is not very well
+ 223:/usr/include/stdlib.h ****    thought out.  Many applications will need to process its data using
+ 224:/usr/include/stdlib.h ****    information from several different locales.  Another problem is
+ 225:/usr/include/stdlib.h ****    the implementation of the internationalization handling in the
+ 226:/usr/include/stdlib.h ****    ISO C++ standard library.  To support this another set of
+ 227:/usr/include/stdlib.h ****    the functions using locale data exist which take an additional
+ 228:/usr/include/stdlib.h ****    argument.
+ 229:/usr/include/stdlib.h **** 
+ 230:/usr/include/stdlib.h ****    Attention: even though several *_l interfaces are part of POSIX:2008,
+ 231:/usr/include/stdlib.h ****    these are not.  */
+ 232:/usr/include/stdlib.h **** 
+ 233:/usr/include/stdlib.h **** /* Structure for reentrant locale using functions.  This is an
+ 234:/usr/include/stdlib.h ****    (almost) opaque type for the user level programs.  */
+ 235:/usr/include/stdlib.h **** # include <xlocale.h>
+ 236:/usr/include/stdlib.h **** 
+ 237:/usr/include/stdlib.h **** /* Special versions of the functions above which take the locale to
+ 238:/usr/include/stdlib.h ****    use as an additional parameter.  */
+ 239:/usr/include/stdlib.h **** extern long int strtol_l (const char *__restrict __nptr,
+ 240:/usr/include/stdlib.h **** 			  char **__restrict __endptr, int __base,
+ 241:/usr/include/stdlib.h **** 			  __locale_t __loc) __THROW __nonnull ((1, 4));
+ 242:/usr/include/stdlib.h **** 
+ 243:/usr/include/stdlib.h **** extern unsigned long int strtoul_l (const char *__restrict __nptr,
+ 244:/usr/include/stdlib.h **** 				    char **__restrict __endptr,
+ 245:/usr/include/stdlib.h **** 				    int __base, __locale_t __loc)
+ 246:/usr/include/stdlib.h ****      __THROW __nonnull ((1, 4));
+ 247:/usr/include/stdlib.h **** 
+ 248:/usr/include/stdlib.h **** __extension__
+ 249:/usr/include/stdlib.h **** extern long long int strtoll_l (const char *__restrict __nptr,
+ 250:/usr/include/stdlib.h **** 				char **__restrict __endptr, int __base,
+ 251:/usr/include/stdlib.h **** 				__locale_t __loc)
+ 252:/usr/include/stdlib.h ****      __THROW __nonnull ((1, 4));
+ 253:/usr/include/stdlib.h **** 
+ 254:/usr/include/stdlib.h **** __extension__
+ 255:/usr/include/stdlib.h **** extern unsigned long long int strtoull_l (const char *__restrict __nptr,
+ 256:/usr/include/stdlib.h **** 					  char **__restrict __endptr,
+ 257:/usr/include/stdlib.h **** 					  int __base, __locale_t __loc)
+ 258:/usr/include/stdlib.h ****      __THROW __nonnull ((1, 4));
+ 259:/usr/include/stdlib.h **** 
+ 260:/usr/include/stdlib.h **** extern double strtod_l (const char *__restrict __nptr,
+ 261:/usr/include/stdlib.h **** 			char **__restrict __endptr, __locale_t __loc)
+ 262:/usr/include/stdlib.h ****      __THROW __nonnull ((1, 3));
+ 263:/usr/include/stdlib.h **** 
+ 264:/usr/include/stdlib.h **** extern float strtof_l (const char *__restrict __nptr,
+ 265:/usr/include/stdlib.h **** 		       char **__restrict __endptr, __locale_t __loc)
+ 266:/usr/include/stdlib.h ****      __THROW __nonnull ((1, 3));
+ 267:/usr/include/stdlib.h **** 
+ 268:/usr/include/stdlib.h **** extern long double strtold_l (const char *__restrict __nptr,
+ 269:/usr/include/stdlib.h **** 			      char **__restrict __endptr,
+ 270:/usr/include/stdlib.h **** 			      __locale_t __loc)
+ 271:/usr/include/stdlib.h ****      __THROW __nonnull ((1, 3));
+ 272:/usr/include/stdlib.h **** #endif /* GNU */
+ 273:/usr/include/stdlib.h **** 
+ 274:/usr/include/stdlib.h **** 
+ 275:/usr/include/stdlib.h **** #ifdef __USE_EXTERN_INLINES
+ 276:/usr/include/stdlib.h **** __BEGIN_NAMESPACE_STD
+ 277:/usr/include/stdlib.h **** __extern_inline int
+ 278:/usr/include/stdlib.h **** __NTH (atoi (const char *__nptr))
+ 279:/usr/include/stdlib.h **** {
+ 280:/usr/include/stdlib.h ****   return (int) strtol (__nptr, (char **) NULL, 10);
+  79              		.loc 2 280 0
+  80 0022 488B7E08 		movq	8(%rsi), %rdi	# MEM[(char * *)argv_5(D) + 8B], MEM[(char * *)argv_5(D) + 8B]
+  81              	.LVL5:
+  82 0026 BA0A0000 		movl	$10, %edx	#,
+  82      00
+  83 002b BE000000 		movl	$0, %esi	#,
+  83      00
+  84              	.LVL6:
+  85 0030 E8000000 		call	strtol	#
+  85      00
+  86              	.LVL7:
+  87 0035 4889C6   		movq	%rax, %rsi	#, D.2900
+  88              	.LVL8:
+  89              	.LBE19:
+  90              	.LBE18:
+  91              	.LBB20:
+  92              	.LBB21:
   13:x86Math.c     **** 	}
   14:x86Math.c     **** 	int x=atoi(argv[1]);
-  68              		.loc 1 14 0
-  69 0038 488B45E0 		movq	-32(%rbp), %rax	# argv, tmp89
-  70 003c 4883C008 		addq	$8, %rax	#, D.2778
-  71 0040 488B00   		movq	(%rax), %rax	# *_6, D.2777
-  72 0043 4889C7   		movq	%rax, %rdi	# D.2777,
-  73 0046 E8000000 		call	atoi	#
-  73      00
-  74 004b 8945FC   		movl	%eax, -4(%rbp)	# tmp90, x
   15:x86Math.c     **** 	int ans=mult(x,x);
-  75              		.loc 1 15 0
-  76 004e 8B55FC   		movl	-4(%rbp), %edx	# x, tmp91
-  77 0051 8B45FC   		movl	-4(%rbp), %eax	# x, tmp92
-  78 0054 89D6     		movl	%edx, %esi	# tmp91,
-  79 0056 89C7     		movl	%eax, %edi	# tmp92,
-  80 0058 E8000000 		call	mult	#
-  80      00
-  81 005d 8945F8   		movl	%eax, -8(%rbp)	# tmp93, ans
   16:x86Math.c     **** 	int term=mult(4,x);
-  82              		.loc 1 16 0
-  83 0060 8B45FC   		movl	-4(%rbp), %eax	# x, tmp94
-  84 0063 89C6     		movl	%eax, %esi	# tmp94,
-  85 0065 BF040000 		movl	$4, %edi	#,
-  85      00
-  86 006a E8000000 		call	mult	#
-  86      00
-  87 006f 8945F4   		movl	%eax, -12(%rbp)	# tmp95, term
   17:x86Math.c     **** 	ans=subtract(ans,term);
-  88              		.loc 1 17 0
-  89 0072 8B55F4   		movl	-12(%rbp), %edx	# term, tmp96
-  90 0075 8B45F8   		movl	-8(%rbp), %eax	# ans, tmp97
-  91 0078 89D6     		movl	%edx, %esi	# tmp96,
-  92 007a 89C7     		movl	%eax, %edi	# tmp97,
-  93 007c E8000000 		call	subtract	#
-  93      00
-  94 0081 8945F8   		movl	%eax, -8(%rbp)	# tmp98, ans
   18:x86Math.c     **** 	ans=add(ans,4);
-  95              		.loc 1 18 0
-  96 0084 8B45F8   		movl	-8(%rbp), %eax	# ans, tmp99
-  97 0087 BE040000 		movl	$4, %esi	#,
-  97      00
-  98 008c 89C7     		movl	%eax, %edi	# tmp99,
-  99 008e E8000000 		call	add	#
-  99      00
- 100 0093 8945F8   		movl	%eax, -8(%rbp)	# tmp100, ans
   19:x86Math.c     **** 	term=subtract(x,2);
- 101              		.loc 1 19 0
- 102 0096 8B45FC   		movl	-4(%rbp), %eax	# x, tmp101
- 103 0099 BE020000 		movl	$2, %esi	#,
- 103      00
- 104 009e 89C7     		movl	%eax, %edi	# tmp101,
- 105 00a0 E8000000 		call	subtract	#
- 105      00
- 106 00a5 8945F4   		movl	%eax, -12(%rbp)	# tmp102, term
   20:x86Math.c     **** 	int check=divide(ans,term);
- 107              		.loc 1 20 0
- 108 00a8 8B55F4   		movl	-12(%rbp), %edx	# term, tmp103
- 109 00ab 8B45F8   		movl	-8(%rbp), %eax	# ans, tmp104
- 110 00ae 89D6     		movl	%edx, %esi	# tmp103,
- 111 00b0 89C7     		movl	%eax, %edi	# tmp104,
- 112 00b2 E8000000 		call	divide	#
- 112      00
- 113 00b7 8945F0   		movl	%eax, -16(%rbp)	# tmp105, check
   21:x86Math.c     **** 	printf("x=%d, x squared - 4x + 4 =%d divided by x-2=%d\n",x,ans,check);
- 114              		.loc 1 21 0
- 115 00ba 8B4DF0   		movl	-16(%rbp), %ecx	# check, tmp106
- 116 00bd 8B55F8   		movl	-8(%rbp), %edx	# ans, tmp107
- 117 00c0 8B45FC   		movl	-4(%rbp), %eax	# x, tmp108
- 118 00c3 89C6     		movl	%eax, %esi	# tmp108,
- 119 00c5 BF000000 		movl	$.LC1, %edi	#,
- 119      00
- 120 00ca B8000000 		movl	$0, %eax	#,
- 120      00
- 121 00cf E8000000 		call	printf	#
- 121      00
   22:x86Math.c     **** 	return 0;
- 122              		.loc 1 22 0
- 123 00d4 B8000000 		movl	$0, %eax	#, D.2776
- 123      00
- 124              	.L3:
   23:x86Math.c     **** }
- 125              		.loc 1 23 0
- 126 00d9 C9       		leave
- 127              		.cfi_def_cfa 7, 8
- 128 00da C3       		ret
- 129              		.cfi_endproc
- 130              	.LFE2:
- 132              		.globl	add
- 134              	add:
- 135              	.LFB3:
   24:x86Math.c     **** 
   25:x86Math.c     **** #ifdef SIMPLE
   26:x86Math.c     **** 	int add(int x, int y) { return x+y; }
@@ -189,149 +416,173 @@
   30:x86Math.c     **** #else
   31:x86Math.c     **** 
   32:x86Math.c     **** 	int add(int x, int y) {
- 136              		.loc 1 32 0
- 137              		.cfi_startproc
- 138 00db 55       		pushq	%rbp	#
- 139              		.cfi_def_cfa_offset 16
- 140              		.cfi_offset 6, -16
- 141 00dc 4889E5   		movq	%rsp, %rbp	#,
- 142              		.cfi_def_cfa_register 6
- 143 00df 897DEC   		movl	%edi, -20(%rbp)	# x, x
- 144 00e2 8975E8   		movl	%esi, -24(%rbp)	# y, y
   33:x86Math.c     **** 		int op1=x;
- 145              		.loc 1 33 0
- 146 00e5 8B45EC   		movl	-20(%rbp), %eax	# x, tmp85
- 147 00e8 8945FC   		movl	%eax, -4(%rbp)	# tmp85, op1
   34:x86Math.c     **** 		int op2=y;
- 148              		.loc 1 34 0
- 149 00eb 8B45E8   		movl	-24(%rbp), %eax	# y, tmp86
- 150 00ee 8945F8   		movl	%eax, -8(%rbp)	# tmp86, op2
   35:x86Math.c     **** 		int res=op1+op2;
- 151              		.loc 1 35 0
- 152 00f1 8B55FC   		movl	-4(%rbp), %edx	# op1, tmp91
- 153 00f4 8B45F8   		movl	-8(%rbp), %eax	# op2, tmp92
- 154 00f7 01D0     		addl	%edx, %eax	# tmp91, tmp90
- 155 00f9 8945F4   		movl	%eax, -12(%rbp)	# tmp90, res
   36:x86Math.c     **** 		return res;
- 156              		.loc 1 36 0
- 157 00fc 8B45F4   		movl	-12(%rbp), %eax	# res, D.2781
   37:x86Math.c     **** 	}
- 158              		.loc 1 37 0
- 159 00ff 5D       		popq	%rbp	#
- 160              		.cfi_def_cfa 7, 8
- 161 0100 C3       		ret
- 162              		.cfi_endproc
- 163              	.LFE3:
- 165              		.globl	subtract
- 167              	subtract:
- 168              	.LFB4:
   38:x86Math.c     **** 
   39:x86Math.c     **** 	int subtract(int x, int y) {
- 169              		.loc 1 39 0
- 170              		.cfi_startproc
- 171 0101 55       		pushq	%rbp	#
- 172              		.cfi_def_cfa_offset 16
- 173              		.cfi_offset 6, -16
- 174 0102 4889E5   		movq	%rsp, %rbp	#,
- 175              		.cfi_def_cfa_register 6
- 176 0105 897DEC   		movl	%edi, -20(%rbp)	# x, x
- 177 0108 8975E8   		movl	%esi, -24(%rbp)	# y, y
   40:x86Math.c     **** 		int op1=x;
- 178              		.loc 1 40 0
- 179 010b 8B45EC   		movl	-20(%rbp), %eax	# x, tmp85
- 180 010e 8945FC   		movl	%eax, -4(%rbp)	# tmp85, op1
   41:x86Math.c     **** 		int op2=y;
- 181              		.loc 1 41 0
- 182 0111 8B45E8   		movl	-24(%rbp), %eax	# y, tmp86
- 183 0114 8945F8   		movl	%eax, -8(%rbp)	# tmp86, op2
   42:x86Math.c     **** 		int res=op1-op2;
- 184              		.loc 1 42 0
- 185 0117 8B45FC   		movl	-4(%rbp), %eax	# op1, tmp90
- 186 011a 2B45F8   		subl	-8(%rbp), %eax	# op2, tmp89
- 187 011d 8945F4   		movl	%eax, -12(%rbp)	# tmp89, res
   43:x86Math.c     **** 		return res;
- 188              		.loc 1 43 0
- 189 0120 8B45F4   		movl	-12(%rbp), %eax	# res, D.2782
   44:x86Math.c     **** 	}
- 190              		.loc 1 44 0
- 191 0123 5D       		popq	%rbp	#
- 192              		.cfi_def_cfa 7, 8
- 193 0124 C3       		ret
- 194              		.cfi_endproc
- 195              	.LFE4:
- 197              		.globl	mult
- 199              	mult:
- 200              	.LFB5:
   45:x86Math.c     **** 
   46:x86Math.c     **** 	int mult(int x, int y) {
- 201              		.loc 1 46 0
- 202              		.cfi_startproc
- 203 0125 55       		pushq	%rbp	#
- 204              		.cfi_def_cfa_offset 16
- 205              		.cfi_offset 6, -16
- 206 0126 4889E5   		movq	%rsp, %rbp	#,
- 207              		.cfi_def_cfa_register 6
- 208 0129 897DEC   		movl	%edi, -20(%rbp)	# x, x
- 209 012c 8975E8   		movl	%esi, -24(%rbp)	# y, y
   47:x86Math.c     **** 		int op1=x;
- 210              		.loc 1 47 0
- 211 012f 8B45EC   		movl	-20(%rbp), %eax	# x, tmp85
- 212 0132 8945FC   		movl	%eax, -4(%rbp)	# tmp85, op1
   48:x86Math.c     **** 		int op2=y;
- 213              		.loc 1 48 0
- 214 0135 8B45E8   		movl	-24(%rbp), %eax	# y, tmp86
- 215 0138 8945F8   		movl	%eax, -8(%rbp)	# tmp86, op2
   49:x86Math.c     **** 		int res=op1*op2;
- 216              		.loc 1 49 0
- 217 013b 8B45FC   		movl	-4(%rbp), %eax	# op1, tmp88
- 218 013e 0FAF45F8 		imull	-8(%rbp), %eax	# op2, tmp87
- 219 0142 8945F4   		movl	%eax, -12(%rbp)	# tmp87, res
+  93              		.loc 1 49 0
+  94 0038 89C7     		movl	%eax, %edi	# D.2900, ans
+  95 003a 0FAFF8   		imull	%eax, %edi	# D.2900, ans
+  96              	.LVL9:
+  97              	.LBE21:
+  98              	.LBE20:
+  99              	.LBB22:
+ 100              	.LBB23:
+ 101 003d 8D048500 		leal	0(,%rax,4), %eax	#, term
+ 101      000000
+ 102              	.LVL10:
+ 103              	.LBE23:
+ 104              	.LBE22:
+ 105              	.LBB24:
+ 106              	.LBB25:
+  42:x86Math.c     **** 		return res;
+ 107              		.loc 1 42 0
+ 108 0044 29C7     		subl	%eax, %edi	# term, ans
+ 109              	.LVL11:
+ 110              	.LBE25:
+ 111              	.LBE24:
+ 112              	.LBB26:
+ 113              	.LBB27:
+  35:x86Math.c     **** 		return res;
+ 114              		.loc 1 35 0
+ 115 0046 83C704   		addl	$4, %edi	#, ans
+ 116              	.LVL12:
+ 117              	.LBE27:
+ 118              	.LBE26:
+ 119              	.LBB28:
+ 120              	.LBB29:
+  42:x86Math.c     **** 		return res;
+ 121              		.loc 1 42 0
+ 122 0049 8D4EFE   		leal	-2(%rsi), %ecx	#, term
+ 123              	.LVL13:
+ 124              	.LBE29:
+ 125              	.LBE28:
+ 126              	.LBB30:
+ 127              	.LBB31:
   50:x86Math.c     **** 		return res;
- 220              		.loc 1 50 0
- 221 0145 8B45F4   		movl	-12(%rbp), %eax	# res, D.2783
   51:x86Math.c     **** 	}
- 222              		.loc 1 51 0
- 223 0148 5D       		popq	%rbp	#
- 224              		.cfi_def_cfa 7, 8
- 225 0149 C3       		ret
- 226              		.cfi_endproc
- 227              	.LFE5:
- 229              		.globl	divide
- 231              	divide:
- 232              	.LFB6:
   52:x86Math.c     **** 
   53:x86Math.c     **** 	int divide(int x, int y) {
- 233              		.loc 1 53 0
- 234              		.cfi_startproc
- 235 014a 55       		pushq	%rbp	#
- 236              		.cfi_def_cfa_offset 16
- 237              		.cfi_offset 6, -16
- 238 014b 4889E5   		movq	%rsp, %rbp	#,
- 239              		.cfi_def_cfa_register 6
- 240 014e 897DEC   		movl	%edi, -20(%rbp)	# x, x
- 241 0151 8975E8   		movl	%esi, -24(%rbp)	# y, y
   54:x86Math.c     **** 		int op1=x;
- 242              		.loc 1 54 0
- 243 0154 8B45EC   		movl	-20(%rbp), %eax	# x, tmp85
- 244 0157 8945FC   		movl	%eax, -4(%rbp)	# tmp85, op1
   55:x86Math.c     **** 		int op2=y;
- 245              		.loc 1 55 0
- 246 015a 8B45E8   		movl	-24(%rbp), %eax	# y, tmp86
- 247 015d 8945F8   		movl	%eax, -8(%rbp)	# tmp86, op2
   56:x86Math.c     **** 		int res=op1/op2;
- 248              		.loc 1 56 0
- 249 0160 8B45FC   		movl	-4(%rbp), %eax	# op1, tmp90
- 250 0163 99       		cltd
- 251 0164 F77DF8   		idivl	-8(%rbp)	# op2
- 252 0167 8945F4   		movl	%eax, -12(%rbp)	# tmp88, res
+ 128              		.loc 1 56 0
+ 129 004c 89F8     		movl	%edi, %eax	# ans, check
+ 130 004e 99       		cltd
+ 131 004f F7F9     		idivl	%ecx	# term
+ 132              	.LVL14:
+ 133 0051 89C1     		movl	%eax, %ecx	# check, check
+ 134              	.LVL15:
+ 135              	.LBE31:
+ 136              	.LBE30:
+  21:x86Math.c     **** 	return 0;
+ 137              		.loc 1 21 0
+ 138 0053 89FA     		movl	%edi, %edx	# ans,
+ 139 0055 BF000000 		movl	$.LC1, %edi	#,
+ 139      00
+ 140              	.LVL16:
+ 141 005a B8000000 		movl	$0, %eax	#,
+ 141      00
+ 142              	.LVL17:
+ 143 005f E8000000 		call	printf	#
+ 143      00
+ 144              	.LVL18:
+  22:x86Math.c     **** }
+ 145              		.loc 1 22 0
+ 146 0064 B8000000 		movl	$0, %eax	#, D.2898
+ 146      00
+ 147              	.LVL19:
+ 148              	.L3:
+  23:x86Math.c     **** 
+ 149              		.loc 1 23 0
+ 150 0069 4883C408 		addq	$8, %rsp	#,
+ 151              		.cfi_def_cfa_offset 8
+ 152 006d C3       		ret
+ 153              		.cfi_endproc
+ 154              	.LFE21:
+ 156              		.globl	add
+ 158              	add:
+ 159              	.LFB22:
+  32:x86Math.c     **** 		int op1=x;
+ 160              		.loc 1 32 0
+ 161              		.cfi_startproc
+ 162              	.LVL20:
+  35:x86Math.c     **** 		return res;
+ 163              		.loc 1 35 0
+ 164 006e 8D0437   		leal	(%rdi,%rsi), %eax	#, res
+ 165              	.LVL21:
+  37:x86Math.c     **** 
+ 166              		.loc 1 37 0
+ 167 0071 C3       		ret
+ 168              		.cfi_endproc
+ 169              	.LFE22:
+ 171              		.globl	subtract
+ 173              	subtract:
+ 174              	.LFB23:
+  39:x86Math.c     **** 		int op1=x;
+ 175              		.loc 1 39 0
+ 176              		.cfi_startproc
+ 177              	.LVL22:
+  42:x86Math.c     **** 		return res;
+ 178              		.loc 1 42 0
+ 179 0072 89F8     		movl	%edi, %eax	# x, res
+ 180 0074 29F0     		subl	%esi, %eax	# y, res
+ 181              	.LVL23:
+  44:x86Math.c     **** 
+ 182              		.loc 1 44 0
+ 183 0076 C3       		ret
+ 184              		.cfi_endproc
+ 185              	.LFE23:
+ 187              		.globl	mult
+ 189              	mult:
+ 190              	.LFB24:
+  46:x86Math.c     **** 		int op1=x;
+ 191              		.loc 1 46 0
+ 192              		.cfi_startproc
+ 193              	.LVL24:
+  49:x86Math.c     **** 		return res;
+ 194              		.loc 1 49 0
+ 195 0077 89F8     		movl	%edi, %eax	# x, res
+ 196 0079 0FAFC6   		imull	%esi, %eax	# y, res
+ 197              	.LVL25:
+  51:x86Math.c     **** 
+ 198              		.loc 1 51 0
+ 199 007c C3       		ret
+ 200              		.cfi_endproc
+ 201              	.LFE24:
+ 203              		.globl	divide
+ 205              	divide:
+ 206              	.LFB25:
+  53:x86Math.c     **** 		int op1=x;
+ 207              		.loc 1 53 0
+ 208              		.cfi_startproc
+ 209              	.LVL26:
+ 210              		.loc 1 56 0
+ 211 007d 89F8     		movl	%edi, %eax	# x, res
+ 212 007f 99       		cltd
+ 213 0080 F7FE     		idivl	%esi	# y
+ 214              	.LVL27:
   57:x86Math.c     **** 		return res;
- 253              		.loc 1 57 0
- 254 016a 8B45F4   		movl	-12(%rbp), %eax	# res, D.2784
   58:x86Math.c     **** 	}
- 255              		.loc 1 58 0
- 256 016d 5D       		popq	%rbp	#
- 257              		.cfi_def_cfa 7, 8
- 258 016e C3       		ret
- 259              		.cfi_endproc
- 260              	.LFE6:
- 262              	.Letext0:
+ 215              		.loc 1 58 0
+ 216 0082 C3       		ret
+ 217              		.cfi_endproc
+ 218              	.LFE25:
+ 220              	.Letext0:
+ 221              		.file 3 "/usr/lib/gcc/x86_64-linux-gnu/4.9/include/stddef.h"
+ 222              		.file 4 "/usr/include/x86_64-linux-gnu/bits/types.h"
+ 223              		.file 5 "/usr/include/libio.h"
+ 224              		.file 6 "/usr/include/stdio.h"
