@@ -257,7 +257,6 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 
 	/* Subnormal Evaluation */
 	signed long denExp = (signed long) fretExp;
-	
 	if(denExp <= 0){
 		fretExp = 0;
 		
