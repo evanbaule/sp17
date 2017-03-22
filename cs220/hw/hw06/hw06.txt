@@ -9,10 +9,10 @@ under Content/Homework Submissions/Homework 06 Submission
  	int y;
  	y=x;
  	
-    a. What is the value of y in decimal?
-      -5
-    b. What are the values of x and y in hexadecimal?
-      Both values are 0xfffffffb
+    a. What is the value of y in decimal? -5
+      
+    b. What are the values of x and y in hexadecimal? Both values are 0xfffffffb
+      
     c. Does padding on the left with the sign bit to increase precision change the value of a negative number?
       It shouldnt? I could be wrong
    	
@@ -21,15 +21,14 @@ under Content/Homework Submissions/Homework 06 Submission
 	int x=0x00000011;
 	int y=0xFFFFFFFC;
 	
-	a. What is the hexadecimal value of x+y? 
-    0x0000000D;
-	b. What is the decimal value of x, and y?
-    x = 17, y = 4294967292
-	c. What is the decimal value of (x+y)?
-    13
-	d. Do you get the same answer for (x+y) using either hexadecimal arithmetic, or decimal?
-    Yes, the answer is the same both ways. 	
-    	
+	a. What is the hexadecimal value of x+y? 0x0000000D; 
+    
+	b. What is the decimal value of x, and y? x = 17, y = 4294967292
+    
+	c. What is the decimal value of (x+y)? 13
+    
+	d. Do you get the same answer for (x+y) using either hexadecimal arithmetic, or decimal? Yes, the answer is the same both ways. 	
+    
     	
   3. Given the following code:
   	
