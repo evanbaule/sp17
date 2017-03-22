@@ -11,19 +11,24 @@ under Content/Homework Submissions/Homework 06 Submission
  	
     a. What is the value of y in decimal?
       -5
-    b. What are the values of y and y in hexadecimal?
-      
+    b. What are the values of x and y in hexadecimal?
+      Both values are 0xfffffffb
     c. Does padding on the left with the sign bit to increase precision change the value of a negative number?
+      It shouldnt? I could be wrong
    	
     	
 2. Given the following code, and assuming ints are 32 bits wide:
 	int x=0x00000011;
 	int y=0xFFFFFFFC;
 	
-	a. What is the hexadecimal value of x+y?
+	a. What is the hexadecimal value of x+y? 
+    0x0000000D;
 	b. What is the decimal value of x, and y?
+    x = 17, y = 4294967292
 	c. What is the decimal value of (x+y)?
-	d. Do you get the same answer for (x+y) using either hexadecimal arithmetic, or decimal?    	
+    13
+	d. Do you get the same answer for (x+y) using either hexadecimal arithmetic, or decimal?
+    Yes, the answer is the same both ways. 	
     	
     	
   3. Given the following code:
@@ -38,8 +43,10 @@ under Content/Homework Submissions/Homework 06 Submission
   	else printf("Unsigned and signed are different\n");
   	
      a. What do you expect to see printed for most values of argv[1] and argv[2]?
+      "Unsigned and signed are the same"
      
      b. Are there any values of argv[1] and argv[2] which will result in "Unsigned and signed are different"?
+
      
      c. If you changed the addition to multiplication: "s_sum=x*y;" and "u_sum=v*w;" will you get the same results?
      
@@ -64,6 +71,7 @@ under Content/Homework Submissions/Homework 06 Submission
 	else printf("This is a counter-example.. the associative property does not hold!\n");
 	
    Which message will get printed?  
-   Why?   
+    "This is a counter-example.."
+   Why?
      
      

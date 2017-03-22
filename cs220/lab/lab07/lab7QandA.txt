@@ -23,13 +23,14 @@ Answer questions 1-4 with the optimization set at its original value, "OPT=-00".
 	B. What hexadecimal address contains that instruction from the x86Math.objdump.txt file? : 40063d
 	
 5. In gdb, just before you execute the instruction at 0x000000000040063d for the first time:
-	A. What is the value in the "edx" register? : _________
-	B. What is the value in the "eax" register? : _________
-	C. After you execute the instruction, what is the value in the "eax" register? : ________
+	A. What is the value in the "edx" register? : ____10_____
+	B. What is the value in the "eax" register? : ____16_____
+	C. After you execute the instruction, what is the value in the "eax" register? : ____16____
 	
 Answer questions 6-8 with the optimization variable set to "OPT=-O1" to do some optimization
 
 6. Is it still possible to map directly from C code to x86 assembler instructions? What has happened?
+	Yes, the C code is still mapped properly.
 	
 	
 	
