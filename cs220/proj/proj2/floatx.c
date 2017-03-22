@@ -7,7 +7,6 @@
 -------------------------------------------------------------------------------- */
 floatx doubleToFloatx(const floatxDef *def, double value) {
 
-	floatx returnFloatx = 0;
 	floatx makeup = *(floatx*) &value; //Gives us the bit makeup of @value as a floatx
 
 	/* --------------------------------------------------------------------------
@@ -21,6 +20,7 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 		fFrac, //Number of exponent bits to be used in return floatx, calculated via spec
 		dBias, //Value used to bias a double (1023)
 	   	fxBias, //Value used to bias a custom floatx
+	   	fracDiff, //Difference between fraction numbers
 	   	maxFloatx; //The maximum value of a floatx, used for representing numbers greater than we can handle
 
 	dLen = sizeof(value) * 8; //Yields total length of a standard double (could hardcode 64 here)
@@ -29,7 +29,9 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 
 	fLen = def->totBits; 
 	fExp = def->expBits;
-	fFrac = fLen - fExp - 1;
+	fFrac = fLen - fExp - 1; // Total - Exponent - Sign: Custom sizes
+
+	fracDiff = (dFrac - fFrac);
 
 	maxFloatx = pow(2, fExp) -1;
 
@@ -99,16 +101,38 @@ floatx doubleToFloatx(const floatxDef *def, double value) {
 		retExp += fxBias;
 	}
 
-	/* Case 2: Values Too Small (Denormalized) */
+	/* Case 2: Values Too Small (Subnormal) */
+	/* Returns 0 if the number is the smallest possible value */	
+	if(value == (1/(pow(2, fFrac - 1))) * (pow(2, (- pow(2, (fExp - 1)) + 1)))) {
+		return 0;
+	}
+
+	/* Subnormal Evaluation */
 	signed long denExp = (signed long) retExp;
-	if(denExp < 0){
+	if(denExp <= 0){
+		retExp = 0;
 		
+		/* Isolate Fraction Bits */
+		copy = makeup; //Reset Copy
+		copy <<= dExp + 1; 
+		copy >>= dExp + 1;
+
+		
+		int ndExp = (-1) * denExp;
+		copy >>= (1 + ndExp + fracDiff);
+		copy |= (floatx)1 << (fFrac - (1 + ndExp));
+
+		retFrac = copy;
+
 	}
 
 	/* --------------------------------------------------------------------------
 	Below: Construction of our return value,
 	a floatx representation of '@param: value'
 	----------------------------------------------------------------------------- */
+	/*  Will get copied into union  */
+	floatx returnFloatx = 0;
+
 	/*  Add Sign Bit  */
 	retSign <<= fLen-1;
 	returnFloatx += retSign;
@@ -144,7 +168,8 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 		fExp,
 		fFrac,
 		dBias,
-		fBias;
+		fBias,
+		fracDiff;
 
 	dLen = 64; 
 	dExp = 11; 
@@ -153,6 +178,8 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 	fLen = def->totBits; 
 	fExp = def->expBits;
 	fFrac = fLen - fExp - 1;
+
+	fracDiff = (dFrac - fFrac);
 
 	dBias = pow(2, dExp-1) - 1;
 	fBias = pow(2, fExp-1) - 1;
@@ -196,12 +223,12 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 		Reset the copy temp
 		Shift left once to eliminate the sign bit
 		Shift left again to eliminate the exponent bits (these could be done simultaneously, but I seperated them to clean it up)
-		Shift all the way right to isolate only the fraction bits
+		Shift left and then right again to turn off leading digits (sign + exp)
 	*/
 	copy = fx;
 	copy <<= 1;
 	copy <<= fExp;  
-	copy >>= dExp + 1;
+	copy >>= dExp + 1; //this value adds leading zeros for the sign and exp bits to completely isolate frac bits
 	fretFrac = copy;
 
 
@@ -218,8 +245,34 @@ double floatxToDouble(const floatxDef *def, floatx fx) {
 		fretExp += dBias;
 	}
 
-	/* Case 2: Values Too Small (Denormal) */
-	// WIP
+	/* Case 2: Values Too Small (Subnormal) */
+	/* Returns 0 if the number is the smallest possible value 	
+
+	Commented out because we dont use a value, just copied from up top
+	if(value == (1/(pow(2, fFrac - 1))) * (pow(2, (- pow(2, (fExp - 1)) + 1)))) {
+		return 0;
+	}
+
+	*/
+
+	/* Subnormal Evaluation */
+	signed long denExp = (signed long) fretExp;
+	
+	if(denExp <= 0){
+		fretExp = 0;
+		
+		/* Isolate Fraction Bits */
+		copy = fx; //Reset Copy
+		copy <<= dExp + 1; 
+		copy >>= dExp + 1;
+
+		int ndExp = (-1) * denExp;
+		copy >>= (1 + ndExp + fracDiff);
+		copy |= (floatx)1 << (fFrac - (1 + ndExp));
+
+		fretFrac = copy;
+
+	}
 	
 
 	/* --------------------------------------------------------------------------
