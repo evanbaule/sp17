@@ -13,9 +13,7 @@ under Content/Homework Submissions/Homework 06 Submission
       
     b. What are the values of x and y in hexadecimal? Both values are 0xfffffffb
       
-    c. Does padding on the left with the sign bit to increase precision change the value of a negative number?
-      It shouldnt? I could be wrong
-   	
+    c. Does padding on the left with the sign bit to increase precision change the value of a negative number? No, as long as you use the sign bit you retain the value.
     	
 2. Given the following code, and assuming ints are 32 bits wide:
 	int x=0x00000011;
@@ -23,7 +21,7 @@ under Content/Homework Submissions/Homework 06 Submission
 	
 	a. What is the hexadecimal value of x+y? 0x0000000D; 
     
-	b. What is the decimal value of x, and y? x = 17, y = 4294967292
+	b. What is the decimal value of x, and y? x = 17, y = -4
     
 	c. What is the decimal value of (x+y)? 13
     
@@ -41,22 +39,22 @@ under Content/Homework Submissions/Homework 06 Submission
   	if (s_sum==u_sum) printf("Unsigned and signed are the same\n");
   	else printf("Unsigned and signed are different\n");
   	
-     a. What do you expect to see printed for most values of argv[1] and argv[2]?
-      "Unsigned and signed are the same"
+     a. What do you expect to see printed for most values of argv[1] and argv[2]? "Unsigned and signed are the same"
      
-     b. Are there any values of argv[1] and argv[2] which will result in "Unsigned and signed are different"?
+     b. Are there any values of argv[1] and argv[2] which will result in "Unsigned and signed are different"? No, any number that can be inputted to an int will remain the same when casted to a uint.
 
-     
-     c. If you changed the addition to multiplication: "s_sum=x*y;" and "u_sum=v*w;" will you get the same results?
+     c. If you changed the addition to multiplication: "s_sum=x*y;" and "u_sum=v*w;" will you get the same results? Yes
+
      
 4. Given the following C code:
 
 	int x=atoi(argv[1]);
 	int y=(x | (-1-x));
+
 	if (y==-1) printf("How did you know that?\n");
 	else printf("Special value of x!\n");
 	
-   Is there any value of x for which will print "Special value of x!"?
+   Is there any value of x for which will print "Special value of x!"? I'm sure there is
    If so, what is the value of x?
    
 5. Given the following code:
@@ -69,8 +67,7 @@ under Content/Homework Submissions/Homework 06 Submission
 	if (y==z) printf("This is an example of the associative property.\n");
 	else printf("This is a counter-example.. the associative property does not hold!\n");
 	
-   Which message will get printed?  
-    "This is a counter-example.."
-   Why?
+   Which message will get printed?  "This is a counter-example.."
+   Why? 
      
      
