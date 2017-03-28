@@ -1,0 +1,8 @@
+-- Project 03 Custom Notes --
+Misc:
+Just testing vim..
+
+
+- Evan
+
+
