@@ -12,9 +12,9 @@ under Content/Homework Submissions/Homework 07 Submission
 	int y = x/2;
 	int z = x>>1;
 	
-   a. Will "y" and "z" have the same value?  If so, why? If not, why not? No, they will have different values because of the 
+   a. Will "y" and "z" have the same value?  If so, why? If not, why not? No, they will have different values because their respective operations handle remainders differently.
    
-   b. Is the statement "shifting to the right is the same as dividing by two" correct? No.
+   b. Is the statement "shifting to the right is the same as dividing by two" correct? Only when working with unsigned values.
    
 2. Given the following C code (where %p in printf means print the hexadecimal value of a pointer):
 
@@ -35,9 +35,9 @@ under Content/Homework Submissions/Homework 07 Submission
 
    
 4. If you are on a little-endian machine that uses 32 bit integers, define a "palindromic" number as a number
-   for which x==htonl(x). Is 16,843,009 a "palindromic" number?  Why or why not? 
+   for which x==htonl(x). Is 16,843,009 a "palindromic" number?  Why or why not? Yes, because the little-endian representation rearranges the bytes, not the bits so the order of bits is palindromic. The value 0x1010101 is the palindromic hex representation of 16843009.
    
 5. The standard library function "float powf(float a,float b)" returns the value of "a" to the power of "b".  
    For instance, powf(2.0,3.0) return 2.0 x 2.0 x 2.0 = 8.0.  Find an integer value for "exp" for which the 
    FRAC bits of the expression "powf(2.0,exp)" is non-zero. (Warning: the representation of INFINITY in floating
-   point has zero FRAC bits.)
+   point has zero FRAC bits.) There would be non--zero FRAC bits for any value of "exp" between -127 and -149 (denormal).
