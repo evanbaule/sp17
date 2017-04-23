@@ -1,0 +1,4 @@
+b phase_5
+b explode_bomb
+run  ans.txt
+disas
