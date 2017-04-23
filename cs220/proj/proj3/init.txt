@@ -1,3 +1,4 @@
+set disassemble-next-line on
 b phase_5
 b explode_bomb
 run  ans.txt
