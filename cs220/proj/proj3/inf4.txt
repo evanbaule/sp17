@@ -1,5 +1,0 @@
-edi -> input
-esi -> 0
-edx -> xe
-
-

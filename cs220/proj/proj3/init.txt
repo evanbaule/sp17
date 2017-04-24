@@ -1,5 +1,0 @@
-set disassemble-next-line on
-b phase_6
-b explode_bomb
-run  ans.txt
-disas
