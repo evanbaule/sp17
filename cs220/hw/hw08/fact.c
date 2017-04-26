@@ -4,9 +4,7 @@
 
 int main(int argc, char *argv[])
 {
-
-   printf("Factorial 4=%d\n",factorial(4));
-
+   	printf("Factorial 4=%d\n",factorial(4));
 	exit(0);
 }
 
