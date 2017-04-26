@@ -5,7 +5,31 @@
 #    to the output (testHex.txt)
 # C This is a character string
 X efbeadde
-???
-X 0000000000400650
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X efbeadde
+X 00400650
 
 

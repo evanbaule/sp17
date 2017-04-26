@@ -8,7 +8,7 @@ CS-220 Spring 2017 Lab 10 answers		Due: April 25, 2017
    routine instead of to the function that called "target".  If the target function had 
    ended with "return false" instead of "exit(0)", would target still run sucessfully?
    If not, what might happen and why?
-   If the function returned false, then you would continue on into a different section of instructions, when you exit(0);, it tells the program to go back to the execution of the instructions prior to our overflow redirection. If we didn't go back to that next instruction, then we would never print out what we overloaded the buffer with. Therefore, you would continue to run through the target program and print out the other string "Yech.." instead of the intended string.
+   The program would continue to run through the main function rather than printing out the good string, it prints out the other string. This is because exit(0) kills the program and return false tells the code to continue executing as it were before. 
    
 3. If target.c had used fgets instead of gets, would your buffer overflow attack have been succesful?
    Why or why not?
@@ -21,4 +21,4 @@ CS-220 Spring 2017 Lab 10 answers		Due: April 25, 2017
 5. Now that you know how to do a buffer overflow attack, could you do a buffer overflow
    attack on target WITHOUT looking at target.c?  If not, why not?  If so, what tools
    would you use to figure out what is in the "target" executable file?
-   If you could look in gdb to find how far down the stack pointer moves when the buffer is instantiated, then you would know the size of the buffer. 
+   Using GDB in the same ways as project 3, we could find all of the information inside the exe assembly language that we needed to overflow it.
