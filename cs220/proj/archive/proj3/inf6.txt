@@ -1,0 +1,9 @@
+node1 27f
+node2 358
+node3 132
+node4 247
+node5 10c
+node6 132
+
+
+
