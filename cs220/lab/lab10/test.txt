@@ -5,29 +5,7 @@
 #    to the output (testHex.txt)
 # C This is a character string
 X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X efbeadde
-X 50064000
+???
+X 0000000000400650
 
 
