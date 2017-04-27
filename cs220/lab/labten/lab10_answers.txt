@@ -2,6 +2,33 @@ CS-220 Spring 2017 Lab 10 answers		Due: April 25, 2017
 
 1. Cut and paste a copy of your successful test.txt file that creates a texthex.txt 
    file that invokes the target function:
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X efbeadde
+   X 50064000
    
 2. Notice that the target function in target.c ends with an "exit(0)" invocation.  The
    "exit(0)" causes the target function to return directly to the operating system cleanup
