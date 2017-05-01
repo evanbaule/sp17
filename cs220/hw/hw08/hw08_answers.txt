@@ -17,11 +17,11 @@ Then submit the edited version of this file in myCourses under hw08.
 
 Frame High @   | Frame Low @    | Function		| Value of "n"	 		| Return Address     |
 ---------------+----------------+---------------|-----------------------|--------------------|
-0x7fffffffe7d0 | 0x7fffffffe7b0 | factorial		| 1						| n/a                |
-			   |                |               |                       |                    |
-               |                |               |                       |                    |
-               |                |               |                       |                    |
-               |                |               |                       |                    |
+0x7fffffffe8e0 | 0x7fffffffe900 | factorial		| 1						| 4005a5             |
+0x7fffffffe910 | 0x7fffffffe930 | factorial     | 2                     | 4005a5             |
+0x7fffffffe940 | 0x7fffffffe960 | factorial     | 3                     | 4005a5             |
+0x7fffffffe970 | 0x7fffffffe990 | factorial     | 4                     | 400564             |
+0x7fffffffe9a0 | 0x7fffffffe9b0 | main()        | na                    | 0x7ffff7a52b45     |
                |                |               |                       |                    |               
                |                |               |                       |                    |
                |                |               |                       |                    | 
