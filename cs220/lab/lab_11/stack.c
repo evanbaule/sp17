@@ -69,8 +69,8 @@ void printFrameField(int frame,int offset,enum dtype_enum dtype,char * desc) {
 	/* Next, find the address of the field */
 	/* The offset is the number of bytes below the top of the frame */
 	/* Since we haven't looked at the type yet, leave this as a void pointer */
-	void *fieldAddress;
-	fieldAddress = frameTop - offset;
+	void * fieldAddress;
+	fieldAddress = (frameTop - offset);
 
 	/* First, print the description passed in as an argument */
 	printf("%s",desc);
