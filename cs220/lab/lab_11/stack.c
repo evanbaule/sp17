@@ -42,14 +42,35 @@ void printStackInfo() {
 	free(strings); // The backtrace symbols function malloced what strings points to
 }
 void printFrameField(int frame,int offset,enum dtype_enum dtype,char * desc) {
-
+	/* --- Reusing a bunch of code --- */
 	/* First, get the top and bottom address of the stack frame of interest */
 	/* The "frame" variable indicates how many stack frames above the current stack frame */
 	/*    e.g. frame=0 is the current stack frame, frame=1 is the caller's stack frame, ... */
+	#define BUFSIZE 100
+	void *bfr[BUFSIZE];
+	nptrs=backtrace(buffer,BUFSIZE); 
 
+	register void * rbp asm ("rbp"); 
+	register void * rsp asm ("rsp"); 
+	void * frameTop=rbp;
+	void * frameBot=rsp;
+
+	int i;
+	for(i = 0; i < nptrs; i++) {
+		if(frame == i){
+			break;
+		}
+		if (frameTop) { 
+			frameBot=frameTop-8; 
+			frameTop=(void *)(*(void **)frameTop); 
+		} else {frameBot=NULL; } 
+	}
+	
 	/* Next, find the address of the field */
 	/* The offset is the number of bytes below the top of the frame */
 	/* Since we haven't looked at the type yet, leave this as a void pointer */
+	void *fieldAddress;
+	fieldAddress = frameTop - offset;
 
 	/* First, print the description passed in as an argument */
 	printf("%s",desc);
@@ -58,6 +79,20 @@ void printFrameField(int frame,int offset,enum dtype_enum dtype,char * desc) {
 	   and the access may be slightly different, depending on what
 	   type of data the field is... the value of dtype */
 	switch(dtype) {
-		default: printf("???"); // Don't know how to print this value yet
+		case(int_type):
+			printf("Handled: int_type");
+			break;
+		case(long_type):
+			printf("Handled: long_type");
+			break;
+		case(addr_type):
+			printf("Handled: addr_type");
+			break;
+		case(char_type):
+			printf("Handled: char_type");
+			break;
+		default: 
+			printf("Handled improperly, reached default case: ");
+			printf("???"); // Don't know how to print this value yet
 	}
 }
