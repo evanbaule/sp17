@@ -80,7 +80,7 @@ void printFrameField(int frame,int offset,enum dtype_enum dtype,char * desc) {
 	   type of data the field is... the value of dtype */
 	switch(dtype) {
 		case(int_type):
-			printf("%d", (int)fieldAddress);
+			printf("%d", (int)&fieldAddress);
 			break;
 		case(long_type):
 			printf("%d", (long)frame);
