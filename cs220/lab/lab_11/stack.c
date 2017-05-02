@@ -80,23 +80,23 @@ void printFrameField(int frame,int offset,enum dtype_enum dtype,char * desc) {
 	   type of data the field is... the value of dtype */
 	switch(dtype) {
 		case(int_type):
-			int v = (int)dtype;
-			printf("v:\t%d", v);
+			int reti = (int)dtype;
+			printf("%d", reti);
 			printf("H:I");
 			break;
 		case(long_type):
-			long v = (long)dtype;
-			printf("v:\t%d", v);
+			long retl = (long)dtype;
+			printf("%d", retl);
 			printf("H:L");
 			break;
 		case(addr_type):
-			int* v = (int *)fieldAddress;
-			printf("v:\t%p", v);
+			int* retptr = (int *)fieldAddress;
+			printf("%p", retptr);
 			printf("H:A");
 			break;
 		case(char_type):
-			char v = (char)dtype;
-			printf("v:\t%c", v);
+			char retc = (char)dtype;
+			printf("%c", retc);
 			printf("H:C");
 			break;
 		default: 
