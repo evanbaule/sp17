@@ -47,8 +47,8 @@ void printFrameField(int frame,int offset,enum dtype_enum dtype,char * desc) {
 	/* The "frame" variable indicates how many stack frames above the current stack frame */
 	/*    e.g. frame=0 is the current stack frame, frame=1 is the caller's stack frame, ... */
 	#define BUFSIZE 100
-	void *bfr[BUFSIZE];
-	nptrs=backtrace(buffer,BUFSIZE); 
+	void *buff[BUFSIZE];
+	int nptrs=backtrace(buff,BUFSIZE); 
 
 	register void * rbp asm ("rbp"); 
 	register void * rsp asm ("rsp"); 
