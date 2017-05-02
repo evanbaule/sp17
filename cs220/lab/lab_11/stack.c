@@ -81,19 +81,19 @@ void printFrameField(int frame,int offset,enum dtype_enum dtype,char * desc) {
 	switch(dtype) {
 		case(int_type):
 			printf("%d", (int)dtype);
-			printf("H:I");
+			printf("\tH:I");
 			break;
 		case(long_type):
 			printf("%d", (long)dtype);
-			printf("H:L");
+			printf("\tH:L");
 			break;
 		case(addr_type):
 			printf("%p", (int *)fieldAddress);
-			printf("H:A");
+			printf("\tH:A");
 			break;
 		case(char_type):
 			printf("%c", (char)dtype);
-			printf("H:C");
+			printf("\tH:C");
 			break;
 		default: 
 			printf("Handled improperly, reached default case: ");
